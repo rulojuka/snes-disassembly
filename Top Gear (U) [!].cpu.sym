@@ -1,0 +1,389 @@
+#SNES65816
+#Visit https://github.com/BenjaminSchulte/fma-snes65816/blob/master/docs/symbols.adoc for specifications.
+
+[SYMBOL]
+00:005a MAYBE_AUXILIAR ANY 1
+00:0214 Y_POSITION_LAST ANY 1
+00:0219 X_POSITION_LAST ANY 1
+00:0226 Y_POSITION_2ND_TO_LAST ANY 1
+00:022b X_POSITION_2ND_TO_LAST ANY 1
+00:1e5a P1SPEED ANY 1
+00:1e5c P2SPEED ANY 1
+00:1e5e P1ENGINE ANY 1
+00:1e60 P2ENGINE ANY 1
+00:1e62 P1FUEL ANY 1
+00:1e64 P2FUEL ANY 1
+00:1e6c P1_SOMETHING_NITRO ANY 1
+00:1e6d P1_SOMETHING_NITRO_2 ANY 1
+00:1e6e P2_SOMETHING_NITRO ANY 1
+00:1e6f P2_SOMETHING_NITRO_2 ANY 1
+00:1e76 P1_CURRENT_LAP ANY 1
+00:1e78 P2_CURRENT_LAP ANY 1
+00:1ed7 P1_POSITION_IN_TRACK_3_BYTES ANY 1
+00:1ed8 P1_POSITION_IN_TRACK_2_BYTES ANY 1
+00:1ed9 P2_POSITION_IN_TRACK_2_BYTES ANY 1
+00:1ee2 INCOG1 ANY 1
+00:1ee8 P1_CAR_LS_4_TIMES ANY 1
+00:1eea P2_CAR_LS_4_TIMES ANY 1
+00:1f04 NUMBER_OF_PLAYERS ANY 1
+00:1f10 SKILL_LEVEL ANY 1
+00:1f8f P1_CAR ANY 1
+00:1fac P2_CAR ANY 1
+00:2100 SNES.INIDISP ANY 1
+00:2101 SNES.OBSEL ANY 1
+00:2102 SNES.OAMADDL ANY 1
+00:2103 SNES.OAMADDH ANY 1
+00:2104 SNES.OAMDATA ANY 1
+00:2105 SNES.BGMODE ANY 1
+00:2106 SNES.MOSAIC ANY 1
+00:2107 SNES.BG1SC ANY 1
+00:2108 SNES.BG2SC ANY 1
+00:2109 SNES.BG3SC ANY 1
+00:210a SNES.BG3SC ANY 1
+00:210b SNES.BG12NBA ANY 1
+00:210c SNES.BG34NBA ANY 1
+00:210d SNES.BG1HOFS ANY 1
+00:210e SNES.BG1VOFS ANY 1
+00:210f SNES.BG2HOFS ANY 1
+00:2110 SNES.BG2VOFS ANY 1
+00:2111 SNES.BG3HOFS ANY 1
+00:2112 SNES.BG3VOFS ANY 1
+00:2113 SNES.BG4HOFS ANY 1
+00:2114 SNES.BG4VOFS ANY 1
+00:2115 SNES.VMAIN ANY 1
+00:2116 SNES.VMADDL ANY 1
+00:2117 SNES.VMADDH ANY 1
+00:2118 SNES.VMDATAL ANY 1
+00:2119 SNES.VMDATAH ANY 1
+00:211a SNES.M7SEL ANY 1
+00:211b SNES.M7A ANY 1
+00:211c SNES.M7B ANY 1
+00:211d SNES.M7C ANY 1
+00:211e SNES.M7D ANY 1
+00:211f SNES.M7X ANY 1
+00:2120 SNES.M7Y ANY 1
+00:2121 SNES.CGADD ANY 1
+00:2122 SNES.CGDATA ANY 1
+00:2123 SNES.W12SEL ANY 1
+00:2124 SNES.W34SEL ANY 1
+00:2125 SNES.WOBJSEL ANY 1
+00:2126 SNES.WH0 ANY 1
+00:2127 SNES.WH1 ANY 1
+00:2128 SNES.WH2 ANY 1
+00:2129 SNES.WH3 ANY 1
+00:212a SNES.WBGLOG ANY 1
+00:212b SNES.WOBJLOG ANY 1
+00:212c SNES.TM ANY 1
+00:212d SNES.TS ANY 1
+00:212e SNES.TMW ANY 1
+00:212f SNES.TSW ANY 1
+00:2130 SNES.CGWSEL ANY 1
+00:2131 SNES.CGADSUB ANY 1
+00:2132 SNES.COLDATA ANY 1
+00:2133 SNES.SETINI ANY 1
+00:2134 SNES.MPYL ANY 1
+00:2135 SNES.MPYM ANY 1
+00:2136 SNES.MPYH ANY 1
+00:2137 SNES.SLHV ANY 1
+00:2138 SNES.OAMDATAREAD ANY 1
+00:2139 SNES.VMDATALREAD ANY 1
+00:213a SNES.VMDATAHREAD ANY 1
+00:213b SNES.CGDATAREAD ANY 1
+00:213c SNES.OPHCT ANY 1
+00:213d SNES.OPVCT ANY 1
+00:213e SNES.STAT77 ANY 1
+00:213f SNES.STAT78 ANY 1
+00:2140 SNES.APUIO0 ANY 1
+00:2141 SNES.APUIO1 ANY 1
+00:2142 SNES.APUIO2 ANY 1
+00:2143 SNES.APUIO3 ANY 1
+00:2180 SNES.WMDATA ANY 1
+00:2181 SNES.WMADDL ANY 1
+00:2182 SNES.WMADDM ANY 1
+00:2183 SNES.WMADDH ANY 1
+00:4016 SNES.JOYSER0 ANY 1
+00:4017 SNES.JOYSER1 ANY 1
+00:4200 SNES.NMITIMEN ANY 1
+00:4201 SNES.WRIO ANY 1
+00:4202 SNES.WRMPYA ANY 1
+00:4203 SNES.WRMPYB ANY 1
+00:4204 SNES.WRDIVL ANY 1
+00:4205 SNES.WRDIVH ANY 1
+00:4206 SNES.WRDIVB ANY 1
+00:4207 SNES.HTIMEL ANY 1
+00:4208 SNES.HTIMEH ANY 1
+00:4209 SNES.VTIMEL ANY 1
+00:420a SNES.VTIMEH ANY 1
+00:420b SNES.MDMAEN ANY 1
+00:420c SNES.HDMAEN ANY 1
+00:420d SNES.MEMSEL ANY 1
+00:4210 SNES.RDNMI ANY 1
+00:4211 SNES.TIMEUP ANY 1
+00:4212 SNES.HVBJOY ANY 1
+00:4213 SNES.RDIO ANY 1
+00:4214 SNES.RDDIVL ANY 1
+00:4215 SNES.RDDIVH ANY 1
+00:4216 SNES.RDMPYL ANY 1
+00:4217 SNES.RDMPYH ANY 1
+00:4218 SNES.JOY1L ANY 1
+00:4219 SNES.JOY1H ANY 1
+00:421a SNES.JOY2L ANY 1
+00:421b SNES.JOY2H ANY 1
+00:421c SNES.JOY3L ANY 1
+00:421d SNES.JOY3H ANY 1
+00:421e SNES.JOY4L ANY 1
+00:421f SNES.JOY4H ANY 1
+00:4300 SNES.DMAP0 ANY 1
+00:4301 SNES.BBAD0 ANY 1
+00:4302 SNES.A1T0L ANY 1
+00:4303 SNES.A1T0H ANY 1
+00:4304 SNES.A1B0 ANY 1
+00:4305 SNES.DAS0L ANY 1
+00:4306 SNES.DAS0H ANY 1
+00:4307 SNES.DASB0 ANY 1
+00:4308 SNES.A2A0L ANY 1
+00:4309 SNES.A2A0H ANY 1
+00:430a SNES.NTLR0 ANY 1
+00:4310 SNES.DMAP1 ANY 1
+00:4311 SNES.BBAD1 ANY 1
+00:4312 SNES.A1T1L ANY 1
+00:4313 SNES.A1T1H ANY 1
+00:4314 SNES.A1B1 ANY 1
+00:4315 SNES.DAS1L ANY 1
+00:4316 SNES.DAS1H ANY 1
+00:4317 SNES.DASB1 ANY 1
+00:4318 SNES.A2A1L ANY 1
+00:4319 SNES.A2A1H ANY 1
+00:431a SNES.NTLR1 ANY 1
+00:4320 SNES.DMAP2 ANY 1
+00:4321 SNES.BBAD2 ANY 1
+00:4322 SNES.A1T2L ANY 1
+00:4323 SNES.A1T2H ANY 1
+00:4324 SNES.A1B2 ANY 1
+00:4325 SNES.DAS2L ANY 1
+00:4326 SNES.DAS2H ANY 1
+00:4327 SNES.DASB2 ANY 1
+00:4328 SNES.A2A2L ANY 1
+00:4329 SNES.A2A2H ANY 1
+00:432a SNES.NTLR2 ANY 1
+00:4330 SNES.DMAP3 ANY 1
+00:4331 SNES.BBAD3 ANY 1
+00:4332 SNES.A1T3L ANY 1
+00:4333 SNES.A1T3H ANY 1
+00:4334 SNES.A1B3 ANY 1
+00:4335 SNES.DAS3L ANY 1
+00:4336 SNES.DAS3H ANY 1
+00:4337 SNES.DASB3 ANY 1
+00:4338 SNES.A2A3L ANY 1
+00:4339 SNES.A2A3H ANY 1
+00:433a SNES.NTLR3 ANY 1
+00:4340 SNES.DMAP4 ANY 1
+00:4341 SNES.BBAD4 ANY 1
+00:4342 SNES.A1T4L ANY 1
+00:4343 SNES.A1T4H ANY 1
+00:4344 SNES.A1B4 ANY 1
+00:4345 SNES.DAS4L ANY 1
+00:4346 SNES.DAS4H ANY 1
+00:4347 SNES.DASB4 ANY 1
+00:4348 SNES.A2A4L ANY 1
+00:4349 SNES.A2A4H ANY 1
+00:434a SNES.NTLR4 ANY 1
+00:4350 SNES.DMAP5 ANY 1
+00:4351 SNES.BBAD5 ANY 1
+00:4352 SNES.A1T5L ANY 1
+00:4353 SNES.A1T5H ANY 1
+00:4354 SNES.A1B5 ANY 1
+00:4355 SNES.DAS5L ANY 1
+00:4356 SNES.DAS5H ANY 1
+00:4357 SNES.DASB5 ANY 1
+00:4358 SNES.A2A5L ANY 1
+00:4359 SNES.A2A5H ANY 1
+00:435a SNES.NTLR5 ANY 1
+00:4360 SNES.DMAP6 ANY 1
+00:4361 SNES.BBAD6 ANY 1
+00:4362 SNES.A1T6L ANY 1
+00:4363 SNES.A1T6H ANY 1
+00:4364 SNES.A1B6 ANY 1
+00:4365 SNES.DAS6L ANY 1
+00:4366 SNES.DAS6H ANY 1
+00:4367 SNES.DASB6 ANY 1
+00:4368 SNES.A2A6L ANY 1
+00:4369 SNES.A2A6H ANY 1
+00:436a SNES.NTLR6 ANY 1
+00:4370 SNES.DMAP7 ANY 1
+00:4371 SNES.BBAD7 ANY 1
+00:4372 SNES.A1T7L ANY 1
+00:4373 SNES.A1T7H ANY 1
+00:4374 SNES.A1B7 ANY 1
+00:4375 SNES.DAS7L ANY 1
+00:4376 SNES.DAS7H ANY 1
+00:4377 SNES.DASB7 ANY 1
+00:4378 SNES.A2A7L ANY 1
+00:4379 SNES.A2A7H ANY 1
+00:437a SNES.NTLR7 ANY 1
+00:97db SOME_CAR_INFO ANY 1
+05:d439 INT1 ANY 1
+05:d486 INT2 ANY 1
+05:d631 INT3 ANY 1
+7e:4000 ROM_TRACK_INFO ANY 1
+
+[COMMENT]
+00:8131 "ZERO everything from $00 to $1f00"
+00:813d "load 00 to A (reaches here at start of race)"
+00:8140 "set flag M? (make A 8 bits)"
+00:81bb "Many different initializations"
+00:82b9 "load P1 car"
+00:82bc "get only 2 LSB"
+00:82c2 "load P2 car"
+00:82c5 "get only 2 LSB"
+00:82df "Start with 3 nitros"
+00:8492 "LOADS A LOT OF THINGS TO VRAM"
+00:8510 "BEGIN LOOP"
+00:85f6 "DRAWS FIRST FRAME OF RACE"
+00:8622 "SCREEN STOPS MOVING"
+00:869a "RACE STARTS!"
+00:86c0 "Reaches here right before race start"
+00:86c3 "LOOP: FRAME CYCLE"
+00:86f6 "UPDATES SOUND AND FRAME"
+00:86fc "LEADS TO FUEL CONSUMPTION SOMETIME"
+00:8762 "UPDATES FRAME and sound"
+00:8769 "PLAYS SOUND"
+00:878d "END LOOP: FRAME CYCLE"
+00:8790 "RACE OVER?"
+00:87f6 "RACE EXITS"
+00:90cc "pit stop related sub routine?"
+00:9176 "Add 007f to the fuel"
+00:9179 "compare to the full tank (a7ff)"
+00:917c "if it is not full, jump to the loop below"
+00:9181 "Loads full tank into acc"
+00:9184 "stores the value in the player 1 fuel"
+00:918a "Updates fuel in pitstop (adds 7F each time)"
+00:9190 "test and reset bit"
+00:9192 "Exits pitstop via acceleration"
+00:9197 "if fuel is still empty"
+00:a5dc "Initialization block?"
+00:a6fd "Load initial fuel value (A7FF)"
+00:a700 "Initialize fuel (Player 1)"
+00:a703 "Initialize fuel (Player 2)"
+00:ac62 "Start of the loop (ends on ad72 )"
+00:ac64 ""A+="
+00:ac67 ""if(A>="
+00:ac6a "then do nothing"
+00:ac6c ""else,"
+00:ac6f "X = A"
+00:aca1 "loads y position from car X"
+00:ad0b "Loads y position from car x"
+00:ad0e "? if < 0 then branch"
+00:ad17 "2 instructions to get opposite (-A)"
+00:ad28 "Loads y position from car X"
+00:ad2b "set carry"
+00:ad2c "subtract with carry"
+00:b879 "test and reset bit"
+00:b8c4 "Reads fuel; SEND ENGINE NOISE TO DSP?"
+00:b8c7 "If it is not zero, execute next 5 instructions"
+00:b8c9 "Load engine value into A"
+00:b8cc "Branch if not negative"
+00:b8d1 "clear carry flag"
+00:b8d2 "Add this number to ACC"
+00:b8d5 "Send engine noise to DSP?"
+00:b9f0 "If there are nitros, branch"
+00:b9f5 "The routine on $ba3e brings back to $ba19"
+00:b9fc "Gets here on the first nitro frames"
+00:ba1b "makes it carry after FF00"
+00:ba22 "Subtract 1 from nitro"
+00:ba23 "Gets here on the last nitro frames"
+00:ba44 "Adds 20"
+00:bf20 "General initializations"
+00:bf23 "General initializations"
+00:c626 "if cars are equal"
+00:c63b "jump here if cars are not equal"
+00:c6a1 "Get some information about P1 car"
+00:c6a4 "Save on a variable"
+00:c6b5 "Save on a variable"
+00:d2c8 "Reads fuel; TO SET OUT OF FUEL?"
+00:d2cb "swap bytes inside acc"
+00:d2cc "remove higher byte"
+00:d2cf "Shifts ACC right 3x"
+00:d2d2 "Compare to number 15"
+00:d2d5 "Branch if A < 15"
+00:d2d7 "If ACC >= 15, make ACC 14"
+00:d2da "Here, ACC:=MIN(rsh_result,14)"
+00:d2dd "branch if ACC> 0d"
+00:d2df "In short, reaches here when $001e63 <= 67"
+00:d2e0 "set carry flag"
+00:d2e1 "subtract with carry"
+00:d2e4 "XOR"
+00:d2e7 "push acc"
+00:d2e8 "transfer x to acc"
+00:d2eb "this loop copies 2*X bytes from $d7ce to $0410"
+00:d2f6 "pull x from stack"
+00:d2f7 "jump if X == 0"
+00:d304 "this loop copies 2*8 bytes from $d7a6 to 0420"
+00:d314 "DO THIS ONLY if fuel > 67"
+00:d34a "JUMPS HERE if fuel <= 67 (but also do when fuel >67)"
+00:d913 "Initialization sub routine?"
+00:d994 "Initial fuel value (a7ff)"
+00:d997 "Initialize fuel player 1"
+00:d99a "initialize fuel player 2"
+00:da75 "what is this?"
+00:db07 "Reads fuel; TO SET FUEL LOW"
+00:db0a "Compares to number 3000"
+00:db0d "Branch if carry set"
+00:db0f "Reaches here when fuel low"
+00:db21 "Reads Fuel"
+00:db75 "Branches to here from db0d"
+05:d369 "Gets here only the first frame nitro is ignited"
+05:d36f "Branch if minus?"
+05:d371 "Compare with 1900"
+05:d374 "Branch if less than 1900"
+05:d37c "If minus, branch here"
+05:d3c4 "some important information"
+05:d3d9 "inclination? no"
+05:d3e5 "Subtract from fuel"
+05:d3e8 "Shifts 6 bits to the right"
+05:d3ee "ACC := (fuel already spent)>>6"
+05:d3ef ""always"
+05:d400 "Inclination?"
+05:d436 "ACC holds the speed to add to current"
+05:d43c "Gets here when hits something and stops"
+05:d43e "These two instructions get 2's complement"
+05:d529 "reads P1 speed"
+05:d5ea "pop to X"
+05:d5eb "load to a"
+05:d5ee "and without updating acc"
+05:d638 "Loads fuel into X; FUEL CONSUMPTION CALCULATION"
+05:d63b "Never equal?"
+05:d63d "Set flag (make A 8 bits)"
+05:d642 "exchange a and b"
+05:d643 "Store a into (Mode 7 matrix a)"
+05:d646 "What is in $1efd?"
+05:d649 "store a into (Mode 7 matrix b)"
+05:d64c "Reset flag (Messing with A bits?)"
+05:d64e "Load into a (Multiplication Result middle byte)"
+05:d651 "exchange B and A"
+05:d652 "compare with ACC"
+05:d655 "rotate bit left"
+05:d656 "compare with ACC"
+05:d659 "rotate bit left"
+05:d65a "AND with ACC"
+05:d65d "ACC++"
+05:d65e "xor"
+05:d661 "set carry"
+05:d662 "add with carry (Finish new fuel calculation)"
+05:d665 "branch if equal"
+05:d667 "branch if carry set"
+05:d669 "Reaches here when out of fuel"
+05:d67b "Update fuel (via acceleration)"
+05:ee16 "P2 related"
+05:ee1c "What is skill level 3?"
+05:ee93 "P2 Related"
+0f:9281 "1 player game?"
+0f:9284 "If yes, return, else:"
+0f:9286 "Gets seed from some kind of frame counter"
+0f:9289 "Gets 2 lowest bits"
+0f:928c "Is it equal to P1 car?"
+0f:928f "If yes, loop, else:"
+0f:9291 "Defines computer car"
+0f:929b "? Goes here if skill level not zero"
+0f:a251 "Is start pressed?"
+7e:2131 "Laps remaining calculation related"
