@@ -3,10 +3,12 @@
 
 [SYMBOL]
 00:005a MAYBE_AUXILIAR ANY 1
+00:0200 LAP_SIZE ANY 1
 00:0214 Y_POSITION_LAST ANY 1
 00:0219 X_POSITION_LAST ANY 1
 00:0226 Y_POSITION_2ND_TO_LAST ANY 1
 00:022b X_POSITION_2ND_TO_LAST ANY 1
+00:1e56 TOTAL_LAPS ANY 1
 00:1e5a P1SPEED ANY 1
 00:1e5c P2SPEED ANY 1
 00:1e5e P1ENGINE ANY 1
@@ -26,6 +28,7 @@
 00:1ee8 P1_CAR_LS_4_TIMES ANY 1
 00:1eea P2_CAR_LS_4_TIMES ANY 1
 00:1f04 NUMBER_OF_PLAYERS ANY 1
+00:1f06 TRACK_NUMBER ANY 1
 00:1f10 SKILL_LEVEL ANY 1
 00:1f8f P1_CAR ANY 1
 00:1fac P2_CAR ANY 1
@@ -222,9 +225,10 @@
 00:4379 SNES.A2A7H ANY 1
 00:437a SNES.NTLR7 ANY 1
 00:97db SOME_CAR_INFO ANY 1
-05:d439 INT1 ANY 1
-05:d486 INT2 ANY 1
+00:bf44 START_GET_INFO_FROM_TRACK ANY 1
+00:dea4 TRACK_NUMBER_OF_LAPS ANY 1
 05:d631 INT3 ANY 1
+05:f5c0 INTERESTING_1 ANY 1
 7e:4000 ROM_TRACK_INFO ANY 1
 
 [COMMENT]
@@ -261,6 +265,7 @@
 00:9190 "test and reset bit"
 00:9192 "Exits pitstop via acceleration"
 00:9197 "if fuel is still empty"
+00:a175 "? Does something for all cars."
 00:a5dc "Initialization block?"
 00:a6fd "Load initial fuel value (A7FF)"
 00:a700 "Initialize fuel (Player 1)"
@@ -295,6 +300,35 @@
 00:ba44 "Adds 20"
 00:bf20 "General initializations"
 00:bf23 "General initializations"
+00:bf38 "A = TRACK_NUMBER"
+00:bf3b "A << 1"
+00:bf3c "X = A // X = TRACK_NUMBER*2"
+00:bf3d "A = $DEA4[X]"
+00:bf44 "Enter 16bit mode"
+00:bf46 "Push data bank register"
+00:bf47 ""X"
+00:bf4a ""Y"
+00:bf4d ""A"
+00:bf50 "Block move $1C00 bytes from $7E:899A-A59A -> $7E:2000-3C00"
+00:bf53 "Return to 8bit mode"
+00:bf55 ""A"
+00:bf57 "Push A into stack"
+00:bf58 "Pull from stack to Data Bank"
+00:bf59 "16 bit mode"
+00:bf5b "A = TRACK_NUMBER"
+00:bf5e "A << 1"
+00:bf5f "A << 1"
+00:bf60 "Clear carry"
+00:bf61 "A += TRACK_NUMBER"
+00:bf64 "A << 1"
+00:bf65 "X = A // X = TRACK_NUMBER*10"
+00:bf7a "A = $8402[X]"
+00:bf7d "X = A"
+00:bf7e "A = 6 LSB of A"
+00:bf81 "exchange B and A"
+00:bf82 "A << 1"
+00:bf83 "A << 1"
+00:bf84 "store LAP_SIZE"
 00:c626 "if cars are equal"
 00:c63b "jump here if cars are not equal"
 00:c6a1 "Get some information about P1 car"
@@ -345,8 +379,19 @@
 05:d3ef ""always"
 05:d400 "Inclination?"
 05:d436 "ACC holds the speed to add to current"
-05:d43c "Gets here when hits something and stops"
-05:d43e "These two instructions get 2's complement"
+05:d439 "? Add speed from acceleration"
+05:d43c "if speed>=0 then goto d453"
+05:d43e "(Gets here when hits something and stops or get negative speed)"
+05:d441 "A=-speed (These two instructions get 2's complement)"
+05:d442 "if(-speed < var) then"
+05:d445 "goto d453"
+05:d456 "if(speed >= 0 ) goto d468"
+05:d461 "adds something to the speed"
+05:d464 "if( sum < 0 ) goto d486"
+05:d466 "else goto d483"
+05:d481 "if(a>=0) goto d486"
+05:d483 "Loads 0 into A when previous sum is positive"
+05:d486 "Invariant: A<=0 here"
 05:d529 "reads P1 speed"
 05:d5ea "pop to X"
 05:d5eb "load to a"
@@ -374,9 +419,17 @@
 05:d667 "branch if carry set"
 05:d669 "Reaches here when out of fuel"
 05:d67b "Update fuel (via acceleration)"
+05:e3b9 "INTERESTING_2"
+05:e78f ""compare"
+05:e792 "if smaller, goto E7AB"
+05:e7ab "set carry flag"
+05:e7ac "subtract with carry"
+05:e7af "branch carry clear"
 05:ee16 "P2 related"
 05:ee1c "What is skill level 3?"
+05:ee30 "? maybe rubberbanding"
 05:ee93 "P2 Related"
+05:f5c0 "Goes to procedure"
 0f:9281 "1 player game?"
 0f:9284 "If yes, return, else:"
 0f:9286 "Gets seed from some kind of frame counter"
