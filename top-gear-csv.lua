@@ -79,6 +79,10 @@ function initializeMemoryVariables()
     memoryValues[FUEL] = {}
 end
 
+function initializeProgramVariables()
+    hasToFlushOutput = false
+end
+
 function updatePreviousTrackFrameCounter()
     previousTrackFrameCounter = memoryTrackFrameCounter
 end
@@ -121,10 +125,18 @@ function isInARace()
     or isInFrameJustAfterCountdown(currentTrackFrameCounter, previousTrackFrameCounter)
     or frameDifference == 1
 
-    -- if(response) then gui.text(100,100,"IN A RACE") else gui.text(100,100,"NOT IN A RACE") end
+    -- if(response) then
+    --     gui.text(100,85,NAMES[memoryTrackNumber])
+    --     gui.text(100,100,"IN A RACE")
+    -- else
+    --     gui.text(100,100,"NOT IN A RACE")
+    -- end
     -- gui.text(100,115,currentTrackFrameCounter)
     -- gui.text(100,130,previousTrackFrameCounter)
     -- if(isInCountdown()) then gui.text(100,145,"COUNTING DOWN") else gui.text(100,145,"NOT COUNTING DOWN") end
+    -- if(hasToFlushOutput) then gui.text(100,160,"HAS TO FLUSH OUTPUT") else gui.text(100,160,"NOTHING TO FLUSH") end
+    -- gui.text(200,115,memorySpeed[1])
+    -- gui.text(200,130,memorySpeed[1]/43)
 
     return response
 end
@@ -143,8 +155,10 @@ end
 function flushOutput()
     local current_date_time_string = os.date("%Y-%m-%d_%H-%M-%S", os.time())
     filename = current_date_time_string .. "-" .. NAMES[memoryTrackNumber] .. ".csv"
+    console.log("Tentando abrir arquivo: ")
+    console.log(filename)
     filewrite = io.open(filename, "w")
-    stringOutput = 'frame,speed,engine,fuel,gear'
+    stringOutput = 'frame,hundreths,time,speed,engine,fuel,gear'
     filewrite:write(stringOutput)
     filewrite:write("\n")
 
@@ -155,52 +169,89 @@ function flushOutput()
         currentFuel = memoryValues[FUEL][i]
         currentGear = memoryValues[GEAR][i]
 
+
+        -- The current time in hundreths in the game is calculated as follows:
+        -- time (cs) = frame / 60 (frames per second) * 100 (hundreths per second)
+        -- time (cs) = frame * 5 / 3
+
+        HUNDRETHS_IN_A_SECOND = 100
+        SECONDS_IN_A_MINUTE = 60
+
+        currentTotalHundreths = math.floor(currentFrame * 5.0 / 3.0)
+        currentHundreths = currentTotalHundreths % HUNDRETHS_IN_A_SECOND
+        currentSeconds = math.floor(currentTotalHundreths / HUNDRETHS_IN_A_SECOND)
+        currentSeconds = currentSeconds % SECONDS_IN_A_MINUTE
+        currentMinutes = math.floor(currentTotalHundreths / HUNDRETHS_IN_A_SECOND / SECONDS_IN_A_MINUTE)
+
         filewrite:write(currentFrame)
+        filewrite:write(",")
+
+        filewrite:write(currentTotalHundreths)
+        filewrite:write(",")
+
+        -- format 01'02"03
+        stringOutput = string.format("%02d'%02d\"%02d", currentMinutes, currentSeconds, currentHundreths)
+        filewrite:write(stringOutput)
         filewrite:write(",")
         
         filewrite:write(currentSpeed)
         filewrite:write(",")
 
+        -- The current speed in KPH in the game is calculated as follows:
+        -- 43
+        -- filewrite:write(currentSpeed)
+        -- filewrite:write(",")
+
         filewrite:write(currentEngine)
         filewrite:write(",")
 
+        stringOutput = currentFuel/MAX_FUEL -- The in-game value goes from 0 to 43007
         filewrite:write(currentFuel)
         filewrite:write(",")
 
-        filewrite:write(currentGear)
+        stringOutput = currentGear+1 -- The in-game value goes from 0 to 4
+        filewrite:write(stringOutput)
         filewrite:write("\n")
     end
 
+    stringOutput = 'metadata\n'
+    filewrite:write(stringOutput)
+
+    stringOutput = 'P1FinishTime,P2FinishTime'
+    filewrite:write(stringOutput)
+    filewrite:write("\n")
+
+    filewrite:write(memoryFinishTime[1])
+    filewrite:write(",")
+
+    filewrite:write(memoryFinishTime[2])
+    filewrite:write(",")
+
     filewrite:close()
-    notFlushedOutputYet = false
-    console.log("FLUSHED OUTPUT BECAUSE PLAYER ONE HAS FINISHED")
+    initializeMemoryVariables()
+    hasToFlushOutput = false
 end
 
 
 function initializeEverything()
     initializeGameConstants()
     initializeMemoryVariables()
+    initializeProgramVariables()
 end
 
 function gameLoop()
     while true do
         readMemoryData()
 
-        if(isInFrameJustAfterCountdown())
-        then
-            notFlushedOutputYet = true
-        end
-
         if(isInARace())
         then
             updateMemoryValues()
+            hasToFlushOutput = true
         else
-            notFlushedOutputYet = true
-        end
-
-        if(notFlushedOutputYet and playerOneHasFinished())
-        then
-            flushOutput()
+            if(hasToFlushOutput) then
+                flushOutput()
+                console.log("FLUSHED OUTPUT BECAUSE RACE HAS ENDED")
+            end
         end
 
         updatePreviousTrackFrameCounter()
@@ -208,8 +259,10 @@ function gameLoop()
     end
 end
 
-notFlushedOutputYet = true
 console.log('\n\nInitialized program\n\n')
 initializeEverything()
 gameLoop()
 
+-- Things to add
+-- P1 final frame of race
+-- P1 lap frames
