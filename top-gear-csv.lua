@@ -9,6 +9,7 @@ function initializeGameConstants()
     CAR_COLOR[2] = 0xFF7B187B -- "darkmagenta"
     CAR_COLOR[3] = 0xFF186B9C -- "dodgerblue"
     MAX_FUEL = 43007
+    MAX_LAPS = 10
     LAST_FRAME_OF_COUNTDOWN_RANGE_START = 200
     LAST_FRAME_OF_COUNTDOWN_RANGE_END = 600
 
@@ -72,11 +73,15 @@ function initializeMemoryVariables()
     GEAR = "gear"
     ENGINE = "engine"
     FUEL = "fuel"
+    NITRO = "nitro"
+    LAP = "lap"
     memoryValues = {}
     memoryValues[SPEED] = {}
     memoryValues[GEAR] = {}
     memoryValues[ENGINE] = {}
     memoryValues[FUEL] = {}
+    memoryValues[NITRO] = {}
+    memoryValues[LAP] = {}
 end
 
 function initializeProgramVariables()
@@ -99,6 +104,7 @@ function readMemoryData()
     memorySpeed = getMemoryDataForBothPlayers(0x1E5A, 2)
     memoryEngine = getMemoryDataForBothPlayers(0x1E5E, 2)
     memoryFuel = getMemoryDataForBothPlayers(0x1E62, 2)
+    memoryP1NitroCounter = memory.readbyte(0x1E6D)
     memoryLap = getMemoryDataForBothPlayers(0x1E76, 2)
     memoryPosition = getMemoryDataForBothPlayers(0x1ED7, 3)
     memoryFinishTime = getMemoryDataForBothPlayers(0x1F26, 2)
@@ -109,6 +115,10 @@ end
 
 function isInCountdown()
     return memoryRaceCountdownOn == 1
+end
+
+function isUsingNitro()
+    return memoryP1NitroCounter > 0
 end
 
 function isInFrameJustAfterCountdown(currentFrameCounter, previousFrameCounter)
@@ -133,16 +143,16 @@ function isInARace()
     -- end
     -- gui.text(100,115,currentTrackFrameCounter)
     -- gui.text(100,130,previousTrackFrameCounter)
-    -- if(isInCountdown()) then gui.text(100,145,"COUNTING DOWN") else gui.text(100,145,"NOT COUNTING DOWN") end
+    -- if(isUsingNitro()) then gui.text(100,145,"NITRO!!!!!") end
     -- if(hasToFlushOutput) then gui.text(100,160,"HAS TO FLUSH OUTPUT") else gui.text(100,160,"NOTHING TO FLUSH") end
-    -- gui.text(200,115,memorySpeed[1])
+    -- gui.text(200,115,memoryP1NitroCounter)
     -- gui.text(200,130,memorySpeed[1]/43)
 
     return response
 end
 
 function playerOneHasFinished()
-    return memoryNumberOfLaps<10 and memoryLap[1] < 10 and memoryNumberOfLaps == memoryLap[1]
+    return memoryNumberOfLaps < MAX_LAPS and memoryLap[1] < MAX_LAPS and memoryNumberOfLaps == memoryLap[1]
 end
 
 function updateMemoryValues()
@@ -150,17 +160,39 @@ function updateMemoryValues()
     memoryValues[GEAR][memoryTrackFrameCounter] = memoryGear[1]
     memoryValues[ENGINE][memoryTrackFrameCounter] = memoryEngine[1]
     memoryValues[FUEL][memoryTrackFrameCounter] = memoryFuel[1]
+    memoryValues[NITRO][memoryTrackFrameCounter] = isUsingNitro()
+    memoryValues[LAP][memoryTrackFrameCounter] = memoryLap[1]
+end
+
+function openFile(filename)
+    console.log("Tentando abrir arquivo: ")
+    console.log(filename)
+    file = io.open(filename, "w")
+    return file
+end
+
+function closeFile(file)
+    console.log("Fechando arquivo.")
+    file:close()
+end
+
+function writeLine(file, arrayOfColumns)
+    stringOutput = ""
+    for _,column in pairs(columns) do
+        stringOutput = stringOutput .. column .. ","
+    end
+    file:write(stringOutput)
+    file:write("\n")
 end
 
 function flushOutput()
     local current_date_time_string = os.date("%Y-%m-%d_%H-%M-%S", os.time())
     filename = current_date_time_string .. "-" .. NAMES[memoryTrackNumber] .. ".csv"
-    console.log("Tentando abrir arquivo: ")
-    console.log(filename)
-    filewrite = io.open(filename, "w")
-    stringOutput = 'frame,hundreths,time,speed,engine,fuel,gear'
-    filewrite:write(stringOutput)
-    filewrite:write("\n")
+
+    filewrite = openFile(filename)
+
+    columns = {"frame","hundreths","time","speed","engine","fuel","gear","isUsingNitro","currentLap"}
+    writeLine(filewrite, columns)
 
     for i=0, memoryTrackFrameCounter do
         currentFrame = i
@@ -168,66 +200,63 @@ function flushOutput()
         currentEngine = memoryValues[ENGINE][i]
         currentFuel = memoryValues[FUEL][i]
         currentGear = memoryValues[GEAR][i]
+        currentNitro = memoryValues[NITRO][i]
+        currentLap = memoryValues[LAP][i]
+        if(currentLap > MAX_LAPS) then
+            currentLap = -1
+        end
+        columns={}
 
+        table.insert(columns, currentFrame)
 
         -- The current time in hundreths in the game is calculated as follows:
         -- time (cs) = frame / 60 (frames per second) * 100 (hundreths per second)
         -- time (cs) = frame * 5 / 3
+        currentTotalHundreths = math.floor(currentFrame * 5.0 / 3.0)
+        table.insert(columns, currentTotalHundreths)
 
+        -- format 01'02"03
         HUNDRETHS_IN_A_SECOND = 100
         SECONDS_IN_A_MINUTE = 60
-
-        currentTotalHundreths = math.floor(currentFrame * 5.0 / 3.0)
         currentHundreths = currentTotalHundreths % HUNDRETHS_IN_A_SECOND
         currentSeconds = math.floor(currentTotalHundreths / HUNDRETHS_IN_A_SECOND)
         currentSeconds = currentSeconds % SECONDS_IN_A_MINUTE
         currentMinutes = math.floor(currentTotalHundreths / HUNDRETHS_IN_A_SECOND / SECONDS_IN_A_MINUTE)
-
-        filewrite:write(currentFrame)
-        filewrite:write(",")
-
-        filewrite:write(currentTotalHundreths)
-        filewrite:write(",")
-
-        -- format 01'02"03
         stringOutput = string.format("%02d'%02d\"%02d", currentMinutes, currentSeconds, currentHundreths)
-        filewrite:write(stringOutput)
-        filewrite:write(",")
+        table.insert(columns, stringOutput)
         
-        filewrite:write(currentSpeed)
-        filewrite:write(",")
+        table.insert(columns, currentSpeed)
 
         -- The current speed in KPH in the game is calculated as follows:
-        -- 43
-        -- filewrite:write(currentSpeed)
-        -- filewrite:write(",")
+        -- table.insert(columns, currentSpeedInKPH)
 
-        filewrite:write(currentEngine)
-        filewrite:write(",")
+        table.insert(columns, currentEngine)
 
         stringOutput = currentFuel/MAX_FUEL -- The in-game value goes from 0 to 43007
-        filewrite:write(currentFuel)
-        filewrite:write(",")
+        table.insert(columns, stringOutput)
 
         stringOutput = currentGear+1 -- The in-game value goes from 0 to 4
-        filewrite:write(stringOutput)
-        filewrite:write("\n")
+        table.insert(columns, stringOutput)
+
+        if(currentNitro) then stringOutput = "1" else stringOutput = "0" end
+        table.insert(columns, stringOutput)
+
+        table.insert(columns, currentLap)
+
+        writeLine(filewrite, columns)
     end
 
-    stringOutput = 'metadata\n'
-    filewrite:write(stringOutput)
+    columns = {"metadata"}
+    writeLine(filewrite,columns)
 
-    stringOutput = 'P1FinishTime,P2FinishTime'
-    filewrite:write(stringOutput)
-    filewrite:write("\n")
+    columns = {"P1FinishTime","P2FinishTime"}
+    writeLine(filewrite,columns)
 
-    filewrite:write(memoryFinishTime[1])
-    filewrite:write(",")
+    columns = {memoryFinishTime[1],memoryFinishTime[2]}
+    writeLine(filewrite,columns)
 
-    filewrite:write(memoryFinishTime[2])
-    filewrite:write(",")
+    closeFile(filewrite)
 
-    filewrite:close()
     initializeMemoryVariables()
     hasToFlushOutput = false
 end
@@ -262,7 +291,3 @@ end
 console.log('\n\nInitialized program\n\n')
 initializeEverything()
 gameLoop()
-
--- Things to add
--- P1 final frame of race
--- P1 lap frames
