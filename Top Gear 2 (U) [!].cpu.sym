@@ -1,0 +1,351 @@
+#SNES65816
+#Visit https://github.com/BenjaminSchulte/fma-snes65816/blob/master/docs/symbols.adoc for specifications.
+
+[SYMBOL]
+00:018d selectedIndexMainMenu ANY 1
+00:01a9 indexCurrentLetter ANY 1
+00:01ab oneByteCounter ANY 1
+00:17d7 passwordArrayCharacter ANY 1
+00:1ce1 regionNumber ANY 1
+00:1ce3 creditRelatedThing ANY 1
+00:1ce5 trackNumber ANY 1
+00:2100 SNES.INIDISP ANY 1
+00:2101 SNES.OBSEL ANY 1
+00:2102 SNES.OAMADDL ANY 1
+00:2103 SNES.OAMADDH ANY 1
+00:2104 SNES.OAMDATA ANY 1
+00:2105 SNES.BGMODE ANY 1
+00:2106 SNES.MOSAIC ANY 1
+00:2107 SNES.BG1SC ANY 1
+00:2108 SNES.BG2SC ANY 1
+00:2109 SNES.BG3SC ANY 1
+00:210a SNES.BG3SC ANY 1
+00:210b SNES.BG12NBA ANY 1
+00:210c SNES.BG34NBA ANY 1
+00:210d SNES.BG1HOFS ANY 1
+00:210e SNES.BG1VOFS ANY 1
+00:210f SNES.BG2HOFS ANY 1
+00:2110 SNES.BG2VOFS ANY 1
+00:2111 SNES.BG3HOFS ANY 1
+00:2112 SNES.BG3VOFS ANY 1
+00:2113 SNES.BG4HOFS ANY 1
+00:2114 SNES.BG4VOFS ANY 1
+00:2115 SNES.VMAIN ANY 1
+00:2116 SNES.VMADDL ANY 1
+00:2117 SNES.VMADDH ANY 1
+00:2118 SNES.VMDATAL ANY 1
+00:2119 SNES.VMDATAH ANY 1
+00:211a SNES.M7SEL ANY 1
+00:211b SNES.M7A ANY 1
+00:211c SNES.M7B ANY 1
+00:211d SNES.M7C ANY 1
+00:211e SNES.M7D ANY 1
+00:211f SNES.M7X ANY 1
+00:2120 SNES.M7Y ANY 1
+00:2121 SNES.CGADD ANY 1
+00:2122 SNES.CGDATA ANY 1
+00:2123 SNES.W12SEL ANY 1
+00:2124 SNES.W34SEL ANY 1
+00:2125 SNES.WOBJSEL ANY 1
+00:2126 SNES.WH0 ANY 1
+00:2127 SNES.WH1 ANY 1
+00:2128 SNES.WH2 ANY 1
+00:2129 SNES.WH3 ANY 1
+00:212a SNES.WBGLOG ANY 1
+00:212b SNES.WOBJLOG ANY 1
+00:212c SNES.TM ANY 1
+00:212d SNES.TS ANY 1
+00:212e SNES.TMW ANY 1
+00:212f SNES.TSW ANY 1
+00:2130 SNES.CGWSEL ANY 1
+00:2131 SNES.CGADSUB ANY 1
+00:2132 SNES.COLDATA ANY 1
+00:2133 SNES.SETINI ANY 1
+00:2134 SNES.MPYL ANY 1
+00:2135 SNES.MPYM ANY 1
+00:2136 SNES.MPYH ANY 1
+00:2137 SNES.SLHV ANY 1
+00:2138 SNES.OAMDATAREAD ANY 1
+00:2139 SNES.VMDATALREAD ANY 1
+00:213a SNES.VMDATAHREAD ANY 1
+00:213b SNES.CGDATAREAD ANY 1
+00:213c SNES.OPHCT ANY 1
+00:213d SNES.OPVCT ANY 1
+00:213e SNES.STAT77 ANY 1
+00:213f SNES.STAT78 ANY 1
+00:2140 SNES.APUIO0 ANY 1
+00:2141 SNES.APUIO1 ANY 1
+00:2142 SNES.APUIO2 ANY 1
+00:2143 SNES.APUIO3 ANY 1
+00:2180 SNES.WMDATA ANY 1
+00:2181 SNES.WMADDL ANY 1
+00:2182 SNES.WMADDM ANY 1
+00:2183 SNES.WMADDH ANY 1
+00:4016 SNES.JOYSER0 ANY 1
+00:4017 SNES.JOYSER1 ANY 1
+00:4200 SNES.NMITIMEN ANY 1
+00:4201 SNES.WRIO ANY 1
+00:4202 SNES.WRMPYA ANY 1
+00:4203 SNES.WRMPYB ANY 1
+00:4204 SNES.WRDIVL ANY 1
+00:4205 SNES.WRDIVH ANY 1
+00:4206 SNES.WRDIVB ANY 1
+00:4207 SNES.HTIMEL ANY 1
+00:4208 SNES.HTIMEH ANY 1
+00:4209 SNES.VTIMEL ANY 1
+00:420a SNES.VTIMEH ANY 1
+00:420b SNES.MDMAEN ANY 1
+00:420c SNES.HDMAEN ANY 1
+00:420d SNES.MEMSEL ANY 1
+00:4210 SNES.RDNMI ANY 1
+00:4211 SNES.TIMEUP ANY 1
+00:4212 SNES.HVBJOY ANY 1
+00:4213 SNES.RDIO ANY 1
+00:4214 SNES.RDDIVL ANY 1
+00:4215 SNES.RDDIVH ANY 1
+00:4216 SNES.RDMPYL ANY 1
+00:4217 SNES.RDMPYH ANY 1
+00:4218 SNES.JOY1L ANY 1
+00:4219 SNES.JOY1H ANY 1
+00:421a SNES.JOY2L ANY 1
+00:421b SNES.JOY2H ANY 1
+00:421c SNES.JOY3L ANY 1
+00:421d SNES.JOY3H ANY 1
+00:421e SNES.JOY4L ANY 1
+00:421f SNES.JOY4H ANY 1
+00:4300 SNES.DMAP0 ANY 1
+00:4301 SNES.BBAD0 ANY 1
+00:4302 SNES.A1T0L ANY 1
+00:4303 SNES.A1T0H ANY 1
+00:4304 SNES.A1B0 ANY 1
+00:4305 SNES.DAS0L ANY 1
+00:4306 SNES.DAS0H ANY 1
+00:4307 SNES.DASB0 ANY 1
+00:4308 SNES.A2A0L ANY 1
+00:4309 SNES.A2A0H ANY 1
+00:430a SNES.NTLR0 ANY 1
+00:4310 SNES.DMAP1 ANY 1
+00:4311 SNES.BBAD1 ANY 1
+00:4312 SNES.A1T1L ANY 1
+00:4313 SNES.A1T1H ANY 1
+00:4314 SNES.A1B1 ANY 1
+00:4315 SNES.DAS1L ANY 1
+00:4316 SNES.DAS1H ANY 1
+00:4317 SNES.DASB1 ANY 1
+00:4318 SNES.A2A1L ANY 1
+00:4319 SNES.A2A1H ANY 1
+00:431a SNES.NTLR1 ANY 1
+00:4320 SNES.DMAP2 ANY 1
+00:4321 SNES.BBAD2 ANY 1
+00:4322 SNES.A1T2L ANY 1
+00:4323 SNES.A1T2H ANY 1
+00:4324 SNES.A1B2 ANY 1
+00:4325 SNES.DAS2L ANY 1
+00:4326 SNES.DAS2H ANY 1
+00:4327 SNES.DASB2 ANY 1
+00:4328 SNES.A2A2L ANY 1
+00:4329 SNES.A2A2H ANY 1
+00:432a SNES.NTLR2 ANY 1
+00:4330 SNES.DMAP3 ANY 1
+00:4331 SNES.BBAD3 ANY 1
+00:4332 SNES.A1T3L ANY 1
+00:4333 SNES.A1T3H ANY 1
+00:4334 SNES.A1B3 ANY 1
+00:4335 SNES.DAS3L ANY 1
+00:4336 SNES.DAS3H ANY 1
+00:4337 SNES.DASB3 ANY 1
+00:4338 SNES.A2A3L ANY 1
+00:4339 SNES.A2A3H ANY 1
+00:433a SNES.NTLR3 ANY 1
+00:4340 SNES.DMAP4 ANY 1
+00:4341 SNES.BBAD4 ANY 1
+00:4342 SNES.A1T4L ANY 1
+00:4343 SNES.A1T4H ANY 1
+00:4344 SNES.A1B4 ANY 1
+00:4345 SNES.DAS4L ANY 1
+00:4346 SNES.DAS4H ANY 1
+00:4347 SNES.DASB4 ANY 1
+00:4348 SNES.A2A4L ANY 1
+00:4349 SNES.A2A4H ANY 1
+00:434a SNES.NTLR4 ANY 1
+00:4350 SNES.DMAP5 ANY 1
+00:4351 SNES.BBAD5 ANY 1
+00:4352 SNES.A1T5L ANY 1
+00:4353 SNES.A1T5H ANY 1
+00:4354 SNES.A1B5 ANY 1
+00:4355 SNES.DAS5L ANY 1
+00:4356 SNES.DAS5H ANY 1
+00:4357 SNES.DASB5 ANY 1
+00:4358 SNES.A2A5L ANY 1
+00:4359 SNES.A2A5H ANY 1
+00:435a SNES.NTLR5 ANY 1
+00:4360 SNES.DMAP6 ANY 1
+00:4361 SNES.BBAD6 ANY 1
+00:4362 SNES.A1T6L ANY 1
+00:4363 SNES.A1T6H ANY 1
+00:4364 SNES.A1B6 ANY 1
+00:4365 SNES.DAS6L ANY 1
+00:4366 SNES.DAS6H ANY 1
+00:4367 SNES.DASB6 ANY 1
+00:4368 SNES.A2A6L ANY 1
+00:4369 SNES.A2A6H ANY 1
+00:436a SNES.NTLR6 ANY 1
+00:4370 SNES.DMAP7 ANY 1
+00:4371 SNES.BBAD7 ANY 1
+00:4372 SNES.A1T7L ANY 1
+00:4373 SNES.A1T7H ANY 1
+00:4374 SNES.A1B7 ANY 1
+00:4375 SNES.DAS7L ANY 1
+00:4376 SNES.DAS7H ANY 1
+00:4377 SNES.DASB7 ANY 1
+00:4378 SNES.A2A7L ANY 1
+00:4379 SNES.A2A7H ANY 1
+00:437a SNES.NTLR7 ANY 1
+9f:1780 bufferPassword ANY 1
+9f:1799 calculatedRegionNumber ANY 1
+9f:17cb engineLevelBuffer ANY 1
+9f:1ce1 regionNumber ANY 1
+9f:1ce3 creditsRelatedThing ANY 1
+9f:1ce5 trackNumber ANY 1
+9f:1d03 engineLevel ANY 1
+9f:4204 SNES.WRDIVL ANY 1
+9f:4206 SNES.WRDIVB ANY 1
+9f:4216 SNES.RDMPYL ANY 1
+9f:8014 startingPoint ANY 1
+9f:9131 routine004 ANY 1
+9f:9194 interruptHandler ANY 1
+9f:9917 incrediblyLongRotatingRoutine ANY 1
+9f:9ca4 subroutine002 ANY 1
+9f:9ede subroutine001 ANY 1
+9f:9f74 initialize9f2100Region ANY 1
+9f:a117 subroutine1 ANY 1
+9f:a13d subroutine002_2 ANY 1
+9f:bf14 importantRoutineCalledWithJSL ANY 1
+9f:c1e2 subroutine005 ANY 1
+9f:c20d subroutine006 ANY 1
+9f:c28f crazyPlace ANY 1
+9f:c492 mainMenuSubroutine ANY 1
+9f:c660 mainMenuIndirectPointersArray ANY 1
+9f:c687 continueGameRoutine ANY 1
+9f:cce3 getCurrentPasswordFromBuffer ANY 1
+9f:cfb9 subroutine2 ANY 1
+9f:d33f initializeVariablesForPasswordEncoding ANY 1
+9f:d474 encodeCurrentPassword ANY 1
+9f:d4b3 completePasswordCheck ANY 1
+9f:d692 setDataDecodedFromPassword ANY 1
+9f:d74b makeA16BitsSetCarryAndReturn ANY 1
+9f:d74f calculateChecksum? ANY 1
+9f:d7d9 passwordDictionaryArray ANY 1
+9f:d7f9 cryptoTable ANY 1
+9f:d819 initializeVariablesForPasswordEncoding2 ANY 1
+9f:d887 checkSomething ANY 1
+9f:da3c copiesThingsSubroutine ANY 1
+9f:e52e creditsSubroutine ANY 1
+9f:f3ae firstInfiniteLoop ANY 1
+
+[COMMENT]
+00:01a9 "[Password] Index of the current letter"
+9f:8060 "everything up to here before first interruptHandler"
+9f:8062 "Title Screen"
+9f:8073 "What calls this?"
+9f:8079 "Main Menu"
+9f:807c "Player Config Menu - Continues here from valid password"
+9f:8088 "Gets here after RACE is pressed"
+9f:8111 "Runs only on first track"
+9f:81dc "Copies a lot of things back"
+9f:913b "Interrupt happens here"
+9f:9196 "push everything into stack"
+9f:9219 "Fade out ended"
+9f:92b1 "pull everything from stack"
+9f:bf23 "crazySubroutine"
+9f:c02f "Jumps here from bf2c"
+9f:c20a "(only) Return from subroutine005"
+9f:c390 "No interrupt handler to here"
+9f:c393 "interrupt happens here (reload)"
+9f:c5f8 "Gets here when selection change in main menu"
+9f:c653 "Gets here when press CONTINUE GAME"
+9f:cc35 "Hub for subroutines"
+9f:ccd8 "Gets here initializing password screen"
+9f:ce4d "acc = indexCurrentLetter"
+9f:ce4f "acc *= 2"
+9f:ce50 "x = acc"
+9f:ce51 "acc = array[x]"
+9f:ce55 "x = acc"
+9f:ce56 "Something with 8bits/16bits"
+9f:ce58 "acc = oneByteCounter"
+9f:ce5a "AND with 5th bit"
+9f:ce5c "branch if 5th bit is 0 (counter to 16)"
+9f:ce5e "5f is the _ character"
+9f:ce60 "Store either "
+9f:ce66 "Something with 8bits/16bits"
+9f:ce68 "Return"
+9f:cfbf "This loop copies all values from array to buffer"
+9f:cfc3 "Copy value from 17d7 to 1780"
+9f:cfcd "For each of 22 letters"
+9f:cfd7 "Z = valid. C=invalid. Will return here if any letter is invalid"
+9f:cfd9 "Only valid passwords get here"
+9f:d017 ""Stores"
+9f:d01a "Wait for something via interruptHandler (fade out?)"
+9f:d34d "Read engine value"
+9f:d477 "i = $16 (goes from $16 to 0)"
+9f:d479 "Y = 0 (goes from 0 to $16)"
+9f:d47c "aux=0"
+9f:d47e "A = something"
+9f:d480 "X=Y"
+9f:d481 "XOR with something on dictionary end"
+9f:d486 "A += aux"
+9f:d488 "Gets 5 LSB"
+9f:d48b "aux = A"
+9f:d48d "X = A"
+9f:d48e "MAKE A 8 BITS"
+9f:d490 "At this point, X has an index for the letter dictionary"
+9f:d494 "bufferPassword[Y] = correct ASCII char"
+9f:d497 "MAKE A 16 bits"
+9f:d499 "X = 5"
+9f:d49c "$12 is always 0. This does nothing other than clearing flags"
+9f:d49e "$10 is always 0. This does nothing other than clearing flags"
+9f:d4aa "X--"
+9f:d4ab "if(X!=0)"
+9f:d4ad "Y++"
+9f:d4ae "i--"
+9f:d4b0 "if ( i != 0 )"
+9f:d4bf "For each letter in the password do:"
+9f:d4c7 "This loop gets the dictionary index of bufferPassword[Y]"
+9f:d4cb "Z flag is true when bufferPassword[Y] == passwordDictionaryArray[X]"
+9f:d4ce "Have we reached the end? ($20 total chars)"
+9f:d4d3 "Either 0 or invalid letter found. Clear everything and return from subroutine"
+9f:d4d6 "At this point, X has the letter index for bufferPassword[Y] (for instance, 0 for "B" or 3 for "F")"
+9f:d4d7 "Previous line: A = X"
+9f:d4d9 "push letter index to stack"
+9f:d4e2 "mod 32"
+9f:d4e9 "pull letter index from stack"
+9f:d51e "This one sets the checksum at $02"
+9f:d63a "Gets next 4 bits?"
+9f:d646 "Gets to here with any complete password"
+9f:d647 "This loop sums all numbers from $1797 to ($1797 + $3c)"
+9f:d650 "while X<$3c"
+9f:d652 "Set dividend"
+9f:d655 "make 16 bits"
+9f:d659 "set divisor"
+9f:d665 ""Remainder"
+9f:d668 "if remainder!=$02 => fail"
+9f:d66a "some invalid passwords fail here"
+9f:d66f "From here on, the password is completely valid?"
+9f:d672 "what is $01e3??"
+9f:d695 "Only valid passwords get here"
+9f:d698 "This is a complete list of password saved data"
+9f:d858 "shift left"
+9f:d9a3 "Block move $8b + 1 bytes from $9f:d256 -> $00:17d3"
+9f:dd90 "Copies some things from ROM?"
+9f:eb52 "Waiting for fade out"
+9f:eb57 "Fade out finished"
+9f:ed33 "1 player / 2players"
+9f:ed36 "if 1 player, branch"
+9f:ed48 "Gets here every track end"
+9f:ed4b "increase trackNumber"
+9f:ed4f "if this is the last track, go to region things"
+9f:ed56 "branch: end of region things (track ==4)"
+9f:ed5c "Increases region number"
+9f:ed6a "if last region?"
+9f:ed71 "Call last region subroutine"
+9f:ee95 "Probably already on champion screen"
