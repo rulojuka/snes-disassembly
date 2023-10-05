@@ -26,3 +26,14 @@ Most if not all, should have been migrated to the Mesen2 labels file
 ## top-gear-csv.lua
 
 Creates a csv file with multiple information about every frame during a race. Useful for speedruns to study the acceleration, speed, fuel, etc of the cars.
+
+## mesen2/
+
+Files used by Mesen2. Configure it to use these directories as its source for Cheats, Debugger and Scripts and it should work.
+If you are feeling lazy, you can just throw the executable in this folder and gitignore everything.
+
+The `mesen2/Debugger/Top Gear (U) [!].json` is the most important file in this Top Gear disassembly. It basically contains all the researched knowledge I got this far.
+
+## notes.txt
+
+Finally, just random notes that are not so easy to put into Mesen2 labels but should go somewhere, at least temporarily
