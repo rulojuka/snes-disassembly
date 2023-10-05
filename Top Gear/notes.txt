@@ -1,0 +1,162 @@
+Questions:
+
+- What are all the car parameters? (acceleration curve, grip, etc)
+    - Where are the addresses for those?
+- How does a speech baloon pop up?
+    - At what address in code does this check happen?
+        - PRGROM: $05D9C is a good place to start
+        - PRGROM: $05A75 is a good place to start
+- How does opponent car color gets decided each race?
+    - PRGROM: $79281
+- How does collision work?
+    - Where is it at the code?
+    - Create an emulator lua script that will show all of the hitboxes in real time
+- How does acceleration (speed calculation) work?
+    - Where is it at the code?
+    - How does inclination of the road gets into this?
+        - Where is this information stored?
+- How does latteral movement (grip) gets calculated?
+    - Where is it in the code?
+- How does bot AI work?
+    - Where is it at the code?
+- How does rubberbanding works?
+    - Where is it at the code?
+- When is the RACE OVER?
+    - One of the conditions is when all of the 10 winning point positions are filled
+- Is it possible to have a consistent landscape rotation
+    - No. Landscape rotation is just an illusion, it does not reflect the way the car is heading.
+    You can check this by standing at the start with P1 and doing an entire lap with P2 (For instance, in New York).
+    Then, the rotation of the landscape will be different between them. This comes from the fact that the
+    rotation itself is not consistent and the track does not even exist in a cartesian/euclidean space.
+- Tip the landscape tiles
+- Create a game with 1 lap of each track
+
+
+5 alertas de fuel low!
+Cheat codes:
+    Hide alerts - P1:
+        DB9F:80 -> 6D2B-A7A4
+    Hide alerts - P2:
+        DD31:80 -> 6D27-0D07
+    Display credits after any new player name
+        F95B9:80 -> 6DB8-0452
+        F95BA:1A -> FCB8-0482
+    Never fail race
+        F8724:00 -> DD64-AF72
+    Never fail country
+    No hud - does not work very well
+        BF2C:EA -> 3C84-A7D7
+        BF2D:EA -> 3C84-A707
+        BF2E:EA -> 3C84-A767
+
+
+Lugares onde a velocidade do p1 é alterada:
+zXXXChangeP1Speed_?
+
+Parado:
+    7
+    8
+    [7,8]...
+Batida de alguém por trás (parado):
+    3
+    11
+Batida de alguém por trás (andando - overengine):
+    9
+    [9]...
+Aceleração normal
+    7
+    8
+    [10,7,8]...
+Na grama:
+    14
+Batida na placa:
+    19
+Batida na pedra?:
+    18 ($1e8e = 0)
+Freiando:
+    12
+Batendo em um outro carro na frente (recebe a velocidade do carro da frente):
+    17
+Set inicial da velocidade (todos os frames antes da corrida começar, até a camera parar):
+Quando a CPU bate por trás em você
+    1
+P1 batendo no P2:
+    15
+P2 batendo no P1:
+    16
+Batendo no poste de início da volta:
+    13
+Pit stop (Entering):
+    2
+Pit stop (ramp up to 215km/h):
+    4
+Pit stop (ramp down from 215km/h to 0 km/h):
+    5
+Pit stop (leaving):
+    6
+
+Cheats:
+Got from mesen cheat database. Looking in the internet, found them here:
+https://etherealgames.com/snes/t/top-gear/game-genie-codes/
+https://www.gamemite.com/games/top-gear/cheats/
+https://gamegenie.codes/snes/top-gear/
+
+- Always finish first
+    A1F2:18
+    Changes AND #$1F to AND #$18
+    It manages this by putting P1 into the finish every time a player from 0 to 7 id, finished the race
+    When a player from 8 to 19 finishes, then it puts id number 8
+    This one has a lot of side effects, like getting multiple positions in the rank
+    If those side effects are not a problem, then A1F2:0 would be a better solution, writing P1 to all
+    finishing positions. 
+- Don't slow down against cars
+    5E4BC:00
+    5E4B7:00
+- Don't slow down against obstacles
+    5D6E9:00
+- Don't slow down offroad
+    5D858:AD
+    Changes STA to LDA in $05D858 (PRGROM: $2D858)
+- Infinite fuel - P1
+    5D67B:AD
+    Changes STA to LDA in $05D67B (PRGROM: $2D67B)
+- Infinite fuel - P2
+    5DEE1:AD
+    Changes STA to LDA in $05DEE1 (PRGROM: $2DEE1)
+- Infinite nitro boosts - P1
+    BA22:EA
+    Changes DEC to NOP in $00BA22 (PRGROM: $03A22)
+- Infinite nitro boosts - P2
+    BA8B:EA
+    Changes DEC to NOP in $00BA8B (PRGROM: $03A8B)
+- Nitro boost lasts until end of race - P1
+    BA47:AD
+    Changes STA to LDA in $00BA47 (PRGROM: $03A47)
+- Nitro boost lasts until end of race - P2
+    BAB0:AD
+    Changes STA to LDA in $00BAB0 (PRGROM: $03AB0)
+- Race in any country
+    F9337:80
+    Changes BCC to BRA in $0F9337 (PRGROM: $79337)
+- Start with no nitro boosts instead of 3
+    82E0:00
+    Changes LDA #$0003 to LDA #$0000 in $0082DF (PRGROM: $002DF)
+- Start with 1 nitro boost
+    82E0:01
+    Changes LDA #$0003 to LDA #$0001 in $0082DF (PRGROM: $002DF)
+- Start with 2 nitro boosts
+    82E0:02
+    Changes LDA #$0003 to LDA #$0002 in $0082DF (PRGROM: $002DF)
+- Start with 6 nitro boosts
+    82E0:06
+    Changes LDA #$0003 to LDA #$0006 in $0082DF (PRGROM: $002DF)
+- Start with 9 nitro boosts
+    82E0:09
+    Changes LDA #$0003 to LDA #$0009 in $0082DF (PRGROM: $002DF)
+- Start with 1/2 fuel
+    D996:53
+    Changes LDA #$A7FF to LDA #$53FF in $00D994 (PRGROM: $05994)
+- Start with 3/4 fuel
+    D996:7C
+    Changes LDA #$A7FF to LDA #$7CFF in $00D994 (PRGROM: $05994)
+    This one should be 7D, not 7C, as 3/4 of A8 is 7E, not 7D.
