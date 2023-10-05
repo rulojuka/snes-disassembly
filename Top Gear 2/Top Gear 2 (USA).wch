@@ -1,0 +1,213 @@
+SystemID SNES
+000014	w	u	0	WRAM	Counter
+000016	w	u	0	WRAM	Counter
+001FF5	w	u	0	WRAM	Counter
+0	S	_	1		Race counters
+00001A	w	u	0	WRAM	
+00001C	w	u	0	WRAM	
+00001E	w	u	0	WRAM	
+000020	w	u	0	WRAM	
+0000F6	w	u	0	WRAM	
+0001AC	w	u	0	WRAM	1 - Finishing time (frames)
+0	S	_	1		Stopwatch on screen
+00C9FA	b	u	0	WRAM	Minutes Units
+00C9FC	b	u	0	WRAM	' symbol
+00C9FE	b	u	0	WRAM	Seconds Tens
+00CA00	b	u	0	WRAM	Seconds Units
+00CA02	b	u	0	WRAM	" symbol
+00CA04	b	u	0	WRAM	Cents Tens
+00CA06	b	u	0	WRAM	Cents units
+0	S	_	1		
+000198	w	u	0	WRAM	
+0001A4	w	u	0	WRAM	Screen km/h
+0001A8	w	u	0	WRAM	
+000212	w	u	0	WRAM	
+000396	w	u	0	WRAM	
+000610	w	u	0	WRAM	
+000624	w	u	0	WRAM	
+0001AA	b	u	0	WRAM	
+000630	b	u	0	WRAM	
+0	S	_	1		Fuel related
+000691	w	u	0	WRAM	engine related
+000692	w	h	0	WRAM	
+0006D0	w	h	0	WRAM	
+0	S	_	1		Player related?
+000690	b	u	0	WRAM	
+000691	b	u	0	WRAM	
+000692	b	u	0	WRAM	
+000693	b	u	0	WRAM	
+0006D4	b	u	0	WRAM	
+0006D5	b	u	0	WRAM	
+0	S	_	1		Position related
+0001A0	b	u	0	WRAM	position
+000A1C	b	u	0	WRAM	position (delayed)
+00C426	b	u	0	WRAM	position
+0	S	_	1		Lap related
+0001A2	b	u	0	WRAM	(copied from C422) current lap (screen)
+000660	b	u	0	WRAM	current lap (0 before starting line) - delayed from C422
+000A1A	b	u	0	WRAM	(calculated from C422) laps remaining - 1
+00C422	b	u	0	WRAM	current lap (0 before starting line)
+00CBC2	b	u	0	WRAM	
+00CC02	b	u	0	WRAM	
+0	S	_	1		
+00019E	b	u	0	WRAM	Total laps
+0129D6	b	u	0	WRAM	total laps
+0	S	_	1		Password related stuff
+0001A9	b	u	0	WRAM	Password current index (0-22)
+0005D4	b	h	0	WRAM	Start of the password
+0	S	_	1		Related to the current selected letter
+0001A5	b	u	0	WRAM	Index of the letter (0-31)
+0005CC	w	h	0	WRAM	Upper Left Red Drawing
+0005D0	w	h	0	WRAM	Upper Right Red Drawing
+0005D4	w	h	0	WRAM	Lower Left Red Drawing
+0005D8	w	h	0	WRAM	Lower Right Red Drawing
+0	S	_	1		Related to the 5th letter chosen
+0005EE	b	u	0	WRAM	
+0017EF	b	h	0	WRAM	Char on screen
+0	S	_	1		
+0017D6	b	h	0	WRAM	Start of output buffer array (6 bytes * 22 positions)
+0001A7	b	h	0	WRAM	???
+000106	b	u	0	WRAM	???
+000108	b	u	0	WRAM	???
+0	S	_	1		Password array ???
+0005DE	b	u	0	WRAM	
+0005E2	b	u	0	WRAM	
+0005E6	b	u	0	WRAM	
+0005EA	b	u	0	WRAM	
+0005EE	b	u	0	WRAM	
+0005F2	b	u	0	WRAM	
+0005F6	b	u	0	WRAM	
+0005FA	b	u	0	WRAM	
+0005FE	b	u	0	WRAM	
+000602	b	u	0	WRAM	
+000606	b	u	0	WRAM	
+00060A	b	u	0	WRAM	
+00060E	b	u	0	WRAM	
+000612	b	u	0	WRAM	
+000616	b	u	0	WRAM	
+00061A	b	u	0	WRAM	
+00061E	b	u	0	WRAM	
+000622	b	u	0	WRAM	
+000626	b	u	0	WRAM	
+00062A	b	u	0	WRAM	
+00062E	b	u	0	WRAM	
+000632	b	u	0	WRAM	
+0	S	_	1		Password Array (character)
+0017D7	b	h	0	WRAM	
+0017DD	b	h	0	WRAM	
+0017E3	b	h	0	WRAM	
+0017E9	b	h	0	WRAM	
+0017EF	b	h	0	WRAM	
+0017F5	b	h	0	WRAM	
+0017FB	b	h	0	WRAM	
+001801	b	h	0	WRAM	
+001807	b	h	0	WRAM	
+00180D	b	h	0	WRAM	
+001813	b	h	0	WRAM	
+001819	b	h	0	WRAM	
+00181F	b	h	0	WRAM	
+001825	b	h	0	WRAM	
+00182B	b	h	0	WRAM	
+001831	b	h	0	WRAM	
+001837	b	h	0	WRAM	
+00183D	b	h	0	WRAM	
+001843	b	h	0	WRAM	
+001849	b	h	0	WRAM	
+00184F	b	h	0	WRAM	
+001855	b	h	0	WRAM	
+0	S	_	1		
+0001A6	b	u	0	WRAM	Number of nitros
+0	S	_	1		Lap related values:
+0001A2	b	u	0	WRAM	Change: Message, then go back
+000660	b	u	0	WRAM	
+00C422	b	u	0	WRAM	Poke this to finish fast (after getting in 1st)
+00CBC2	b	u	0	WRAM	
+00CC02	b	u	0	WRAM	
+0	S	_	1		
+001D19	b	u	0	WRAM	Money (Thousands)
+0	S	_	1		Updates (has an 80 to show improved)
+001D03	b	u	0	WRAM	Engine
+001D05	b	u	0	WRAM	Wet tire
+001D07	b	u	0	WRAM	Dry tire
+001D09	b	u	0	WRAM	Gearbox
+001D0B	b	u	0	WRAM	Nitro
+001D0F	b	u	0	WRAM	Side Armor
+001D11	b	u	0	WRAM	Rear Armor
+001D13	b	u	0	WRAM	Front Armor
+001D15	b	u	0	WRAM	Color
+0	S	_	1		Password saved data. 2 bytes each and in program order
+001CE1	w	u	0	WRAM	Region Number (Written just before general routine)
+001CE3	b	u	0	WRAM	??? (Written just before general routine)
+001CDB	b	h	0	WRAM	1 player / 2 players
+001CDD	b	h	0	WRAM	Difficulty
+001D42	w	h	0	WRAM	P2 - Money (Thousands)
+001D40	w	h	0	WRAM	
+001D2A	w	h	0	WRAM	P2 - Gear (1d2b) and control type (1d2a)
+001D28	w	h	0	WRAM	P2 - Speed (MPH/KMH)
+001D3E	w	h	0	WRAM	P2 - Color
+001D3C	w	h	0	WRAM	P2 - Front Armor Level
+001D3A	w	h	0	WRAM	P2 - Rear Armor Level
+001D38	w	h	0	WRAM	P2 - Side Armor Level
+001D36	w	h	0	WRAM	
+001D34	w	h	0	WRAM	P2 - Nitro level
+001D32	w	h	0	WRAM	P2 - Gearbox Level
+001D2E	w	h	0	WRAM	P2 - Wet Tire Level
+001D30	w	h	0	WRAM	P2 - Dry Tire Level
+001D2C	w	h	0	WRAM	P2 - Engine level
+001D19	w	h	0	WRAM	Money (Thousands)
+001D17	w	h	0	WRAM	
+001D01	w	h	0	WRAM	Gear (1d02) and control type (1d01)
+001CFF	w	h	0	WRAM	Speed (MPH/KMH)
+001D15	w	h	0	WRAM	Color
+001D13	w	h	0	WRAM	Front Armor Level
+001D11	w	h	0	WRAM	Rear Armor Level
+001D0F	w	h	0	WRAM	Side Armor Level
+001D0D	w	h	0	WRAM	
+001D0B	w	h	0	WRAM	Nitro level
+001D09	w	h	0	WRAM	Gearbox Level
+001D05	w	h	0	WRAM	Wet Tire Level
+001D07	w	h	0	WRAM	Dry Tire Level
+001D03	w	h	0	WRAM	Engine level
+001CE5	w	h	0	WRAM	Track number (Set to zero)
+0	S	_	1		Buffer for password saved data:
+0017D1	b	u	0	WRAM	
+0	S	_	1		
+001CE5	b	u	0	WRAM	Track number
+001CE1	b	u	0	WRAM	Region Number
+001CE3	w	h	0	WRAM	seems important to decide region / credits
+0	S	_	1		Cartridge text
+0FEFA7	b	h	0	CARTROM	Player Names
+0FDB32	b	h	0	CARTROM	Region Names
+0FBA36	b	h	0	CARTROM	Track Names (Strings start with 82 and end with 83 00)
+0E7B35	b	h	0	CARTROM	???
+0DBE78	b	h	0	CARTROM	??? Seems like a password
+0C1365	b	h	0	CARTROM	Credits
+0C0001	b	h	0	CARTROM	Enter password
+097193	b	h	0	CARTROM	?
+07A258	b	h	0	CARTROM	Some counter things?
+060B81	b	h	0	CARTROM	Maybe some maps?
+01D325	b	h	0	CARTROM	???
+014A27	b	h	0	CARTROM	Screen alerts
+0	S	_	1		
+001DC5	b	u	0	WRAM	P1 Championship Points
+0	S	_	1		Championship Points:
+001DC7	b	u	0	WRAM	RITCHIE
+001DC9	b	u	0	WRAM	ASH
+001DCB	b	u	0	WRAM	MICK
+001DCD	b	u	0	WRAM	TONY
+001DCF	b	u	0	WRAM	GREGGS
+001DD1	b	u	0	WRAM	PAT
+001DD3	b	u	0	WRAM	PAUL
+001DD5	b	u	0	WRAM	MARK
+001DD7	b	u	0	WRAM	GEORGE
+001DD9	b	u	0	WRAM	SIZ
+001DDB	b	u	0	WRAM	ADE
+001DDD	b	u	0	WRAM	SYD
+001DDF	b	u	0	WRAM	MAT
+001DE1	b	u	0	WRAM	BERNI
+001DE3	b	u	0	WRAM	PHIL
+001DE5	b	u	0	WRAM	MIKE
+001DE7	b	u	0	WRAM	JON JON
+001DE9	b	u	0	WRAM	TRICKY
+001DEB	b	u	0	WRAM	SIMON
+
