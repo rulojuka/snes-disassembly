@@ -1,0 +1,22 @@
+﻿{
+  "Cheats": [
+    {
+      "Description": "Disable HUD - use before start race",
+      "Type": "SnesGameGenie",
+      "Enabled": false,
+      "Codes": "3C84-A7D7\r\n3C84-A707\r\n3C84-A767"
+    },
+    {
+      "Description": "Display credits after new name",
+      "Type": "SnesGameGenie",
+      "Enabled": false,
+      "Codes": "6DB8-0452\r\nFCB8-0482"
+    },
+    {
+      "Description": "Never fail race",
+      "Type": "SnesGameGenie",
+      "Enabled": false,
+      "Codes": "DD64-AF72"
+    }
+  ]
+}
