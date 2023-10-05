@@ -287,6 +287,8 @@
 9f:d017 ""Stores"
 9f:d01a "Wait for something via interruptHandler (fade out?)"
 9f:d34d "Read engine value"
+9f:d3b3 "If it is manual, branch"
+9f:d432 "If it is manual, branch"
 9f:d477 "i = $16 (goes from $16 to 0)"
 9f:d479 "Y = 0 (goes from 0 to $16)"
 9f:d47c "aux=0"

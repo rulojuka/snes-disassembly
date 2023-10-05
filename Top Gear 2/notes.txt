@@ -1,0 +1,35 @@
+Very important addresses:
+
+Data:
+0017d7 passwordArrayCharacter
+9f1780 bufferPassword
+
+Code:
+9f8014 startingPoint
+9f9194 interruptHandler
+9fd474 encodeCurrentPassword
+
+
+During password decoding, the final data from Engine ($1do3) is stored at ($17cb)
+
+
+Total regions: 16
+
+AUSTRALASIA
+BRITAIN
+CANADA
+EGYPT
+FRANCE
+GERMANY
+GREECE
+INDIA
+IRELAND
+ITALY
+JAPAN
+SCANDINAVIA
+SOUTH AMERICA
+SPAIN
+SWITZERLAND
+UNITED STATES
+
+Tracks per region: 4
