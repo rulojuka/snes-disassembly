@@ -1,5 +1,7 @@
 ---@diagnostic disable: lowercase-global, undefined-global
 
+previousTrackFrameCounter = 0
+
 function initializeScreenConstants()
     PADDING = 15
     CIRCLE_BORDER_COLOR = "gray"
