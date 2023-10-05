@@ -1,0 +1,782 @@
+﻿SnesPrgRom:0123::This is the end of all initial setup\nIt takes 171451 cycles to get here\nfrom boot.\n\nIt never gets here again
+SnesPrgRom:0126::This one gets called in the boot\nand only returns at the start\nof the first race
+SnesPrgRom:012A:zEntryPointForEachRace:JMPs here from: \n$008875
+SnesPrgRom:013B::Zeroes everything from $00 to $008134
+SnesPrgRom:0140:zDemoIsRunning_EntryRace
+SnesPrgRom:0144:zBackupSomeInfo
+SnesPrgRom:018E::Loads #$00 into SPC700's APU IO 0
+SnesPrgRom:0195::Loop from 0 to $FFFF to spend some time?
+SnesPrgRom:01A0::Loads trackNumber related variable into SPC700's APU IO 0
+SnesPrgRom:01A7::Loop from 0 to $FFFF to spend some time?
+SnesPrgRom:01AB::Loads #$02 into SPC700's APU IO 1
+SnesPrgRom:01AF::Loop from 0 to $FFFF to spend some time?
+SnesPrgRom:01B6:zResetVariablesAndRegisters
+SnesPrgRom:0486:zResetVariablesAndRegistersEnd
+SnesPrgRom:0510:zCameraApproachLoopStart
+SnesPrgRom:052F:zXXXChangeP1Speed_1:?Called when hit from behind by CPU
+SnesPrgRom:0589::This call draws the first frame of a race
+SnesPrgRom:0618:zCameraReachedP1
+SnesPrgRom:061F:zCameraDidntReachP1
+SnesPrgRom:0622:zEndOfCameraApproachSequence
+SnesPrgRom:0636:zNameShowingLoop:Counter Y is initialized with #$3c at $8690\n\nThis is the sequence that happens\nafter the camera has approached\n\nThe first time it waits without alert\nThen show alert 3, 2, 1, GO!
+SnesPrgRom:0647:zDemoRunning
+SnesPrgRom:0657:zMarkDemoToNotBeRunningAnymore
+SnesPrgRom:0662:zProceedWithFrameCalculation
+SnesPrgRom:0683::This is used to count from 0 to 4.\n0 - Shows nothing\n1 - Shows "3"\n2 - Shows "2"\n3 - Shows "1"\n4 - Shows "Go!" and exit loop.\n\n
+SnesPrgRom:0690::Sets #$3C (60 in decimal) to the loop counter\nThis will be used to wait 60 frames between numbers
+SnesPrgRom:0693::Exit loop if X==4
+SnesPrgRom:069A:zRightBeforeRaceStart
+SnesPrgRom:06C0::This is executed right before the race starts
+SnesPrgRom:06C3:zRaceLoop:Start of race loop\nEnds at 878D\nBy race loop, we mean the part of the game that accepts inputs to change the car state\nAlso, this is the part where the race clock is running\nYet, the race clock is not calculated using $0E\nP.S.: This usually starts running\nin the middle of drawing P2 screen
+SnesPrgRom:06C7::waits for interrupt
+SnesPrgRom:06D2:zDemoIsRunning
+SnesPrgRom:06E2:zSomethingPressedOnJoypads
+SnesPrgRom:06F0::This would undo the previous subroutine
+SnesPrgRom:06F6::This takes ages.\nMost of the frame is drawn here.\nAlso, there is a loop for handling IRQ
+SnesPrgRom:075C::Called during Hiroshima's dawn
+SnesPrgRom:075F::Called during Hiroshima's dawn
+SnesPrgRom:0762::This takes ages. (50k+ cycles)\nMost of the frame is drawn here.
+SnesPrgRom:078D::game loops back to 86c3
+SnesPrgRom:0790:zExitPoint1_10CarsHaveFinished
+SnesPrgRom:07AC:zRaceOverNoFuel:Will now end race in $16 frames.\n(Plus fadeout)
+SnesPrgRom:07E1:zExitPoint2_P1AndP2Finished
+SnesPrgRom:07E6::If countdown is still happening goto CountdownToStart\nelse if countdown reaches 1, goto
+SnesPrgRom:07EB:zFadeoutAfterRace_TickFadeoutOnce:$E1 will be 0 when the fadeout ends.
+SnesPrgRom:07EF::While fadeout did not finish, go back to race loop
+SnesPrgRom:07F1:zFadeoutAfterRace_CountdownToStartFadeout
+SnesPrgRom:07F6:zFadeoutAfterRace_FadeoutHasFinished
+SnesPrgRom:0801:zFadeoutAfterRace_CounterHasReachedZero
+SnesPrgRom:0804::Sets countdown as $78 race loops
+SnesPrgRom:080A:zFadeoutAfterRace_FadeoutHasFinishedAndRaceLoopIsBroken
+SnesPrgRom:082E:zTenPlayersAlreadyFinished
+SnesPrgRom:0839:zMaybeResetPlayerSetups
+SnesPrgRom:086F::Runs after a race, but not on the first one.\nAt the first one, only the "Location" part of the scene runs.
+SnesPrgRom:0878:zSubUselessRelatedToSound:Does a lot of comparations\nand never gets to the STX\n\nIf the STX would be accessed then\nwe would have\n$1E58 = $#FFFF\n\nIf we set this manually,\nall the sound stops.
+SnesPrgRom:0890:uselessSTX:This is the only change in state in this subroutine
+SnesPrgRom:08A1:zSubUpdatesEngineBeforeRaceStart
+SnesPrgRom:08A4::Compares accelerator button with button pressed
+SnesPrgRom:0910:zSubUpdatesMinimap
+SnesPrgRom:091F::stores p1 sprite position
+SnesPrgRom:092F::stores p2 sprite position
+SnesPrgRom:0962::?stores lead car sprite position
+SnesPrgRom:10CC:zSubPitStop:This subroutine checks the\nzVarPitStopStatus and deals with it\naccordingly.\nCheck the variable comments for\nmore info.
+SnesPrgRom:10E4:zEnteredPitStop:Got here when entered Pit Stop
+SnesPrgRom:112F:zXXXChangeP1Speed_2:Gets here when p1 enters pit stop\nFor only 1 frame\nIt sets the entering speed of $1700\nThis is equivalent to: 138Km/h
+SnesPrgRom:1172:zLabelPitStop_Fueling:It gets here when PitStopStatus=#$FFFA
+SnesPrgRom:1176::Add $7F fuel every time.
+SnesPrgRom:117E:zReachedFullTank
+SnesPrgRom:1184::Do not put more fuel than MAX_FUEL
+SnesPrgRom:118A:zTankNotFullYet:Refuelling happens here
+SnesPrgRom:1194:zPressedAccelerator
+SnesPrgRom:1222:zCheckP2PitStop
+SnesPrgRom:1238:zAfterFadeoutOfPitStop
+SnesPrgRom:12CF::Add $7F fuel every time.
+SnesPrgRom:12E3:zP2TankNotFullYet
+SnesPrgRom:12E9::If P2 is CPU, only leave with full tank
+SnesPrgRom:12EB:z2PlayersGame:If P2 is human, check if P2\nis holding accelerator
+SnesPrgRom:1381:zSubFlashlightRelated:This uses some SNES color math\nto create the flashlight effect on\nnight races.
+SnesPrgRom:13A2:zDrawFlashlight:This is only reached at night races\nAlso, when disabled, the flashlight\nwill stay the same and not move
+SnesPrgRom:13A5::This uses a quick hack\nIt, in fact, only cares about the second\nbyte $1EDC, which gets zeroed just before\na race starts (at 0086A8).
+SnesPrgRom:13BA:zOnlyWhenRaceIsRunning
+SnesPrgRom:18DF-18E4:zConstCarTypeRelatedMap1:Don't know the size yet.\nAt least 6 bytes. (Check X for that)
+SnesPrgRom:191F-1924:zConstCarTypeRelatedMap2
+SnesPrgRom:19DB-1A14:zConstMinSpeedForGearTable:Min speed for gear:\n\n1: $#0000\n2: $#047E\n3: $#0898\n4: $#0DAC\n5: $#1149\n\nStrangely, there are 4 tables (one for each car)\nbut they all have the same values
+SnesPrgRom:1A15-1A4E:zConstMaxSpeedForGearTable:Max speed for gear:\n\n1: $#0640\n2: $#0C80\n3: $#0FA0\n4: $#1540\n5: $#FFFF\n\nStrangely, there are 4 tables (one for each car)\nbut they all have the same values
+SnesPrgRom:1B3F-1CDE:zVarTrackInfoPointerTable2
+SnesPrgRom:2175:zSubProbablyUpdateBots:When disabled, \nAI BOTS and HUD stop working in their place\nboth players continue to work normally\nVery similar to zSubProbablyUpdateP1AndP2\nCollisions continue working.\n\nThis starts every race frame\nat around scanline 20-40\nand finishes around 15 scanlines later
+SnesPrgRom:217C:zStartLoop:When I change the first opcode to\nJMP $A1BD\nthe CPU cars stop moving forward\nbut continue to move laterally
+SnesPrgRom:2180:zCPUCar:This means that this is not P1 or P2\neven if P2 is controlled by AI
+SnesPrgRom:21AC:zStoreNewTrackPosition
+SnesPrgRom:21B2:zHasOvertakenNextCar
+SnesPrgRom:21B5:zHasNotOvertakenNextCar
+SnesPrgRom:21C4:zUpdateBotLoop
+SnesPrgRom:21EF:zIsAtOneMoreThanLastLap:Get id from car that finished
+SnesPrgRom:2208:zMoreThanZeroCarsHaveFinished
+SnesPrgRom:2220:zStoreFinishingTimeForThisPlayer
+SnesPrgRom:2248:zOvertakingHasHappened
+SnesPrgRom:2276:zSwapsNeighborCarInfo:This swaps data from cars AUX and AUX-1\nAUX = X/$12\n\nExample:\nX=$#0012, swaps car 1 and 0\nX=$#0156, swaps car 19 and 18\n\nCars are indexed from 0 to 19\n\nBytes 16-17 are left unchanged
+SnesPrgRom:22BB:zNotLastCarYet
+SnesPrgRom:22C1:zLastCarSwapped
+SnesPrgRom:230C:zSubHitBehindByCPU
+SnesPrgRom:2369:zXXXChangeP1Speed_3
+SnesPrgRom:2558:zSubMaybeInitializeCarsInfo:When disabled, cars are completely\nmessed up
+SnesPrgRom:2700:zInitializeFuel
+SnesPrgRom:28E1:zSubMaybeInitializeMoreCarsInfo:When disable, all CPU cars\nstay in the middle
+SnesPrgRom:2A79:zSubCalculatesPlayerPosition:Check against all cars if it is in front\nor behind.\nParameter: Y\nReturns result on Y.
+SnesPrgRom:2B7A:zSubCalculateTenFirstPositions:Apparently, this continues the whole\nsimulations of all CPUs until they\nfill all of the 10 point winning\npositions on the race.\n\n$ABCC: Update the list of point winners\nfor this race
+SnesPrgRom:2B87:zLoop1
+SnesPrgRom:2B97:zTenPlayersDidNotFinishYet
+SnesPrgRom:2BA5:zFinishedASector
+SnesPrgRom:2BAB:zDidNotFinishASector
+SnesPrgRom:2BB1:zFinishedALap
+SnesPrgRom:2BC5:zFinishedLastLap
+SnesPrgRom:2BD0:zIncreasesNumberOfFinishingPlayers
+SnesPrgRom:2BDA:zSetsItsTime
+SnesPrgRom:2BFC:zSubRaceLoopFunction3:When disabled every car sprite\nstops being updated and it is instead\ndrawed in the last place it was.
+SnesPrgRom:2EF3:zSubDrawCarSpritesBeforeRace
+SnesPrgRom:318C:zSubDrawP1Background
+SnesPrgRom:333B:zSubNextToDiscover
+SnesPrgRom:334C:zP1IsLapAhead
+SnesPrgRom:3361:zP1IsTwoLapsAhead
+SnesPrgRom:3371:zP2IsLapAhead
+SnesPrgRom:339A:zSameLap
+SnesPrgRom:33B6::Each car hit adds $30 to the tick counter\n(which decreases every tick)\nIf you get to $50, you enter this code.
+SnesPrgRom:33BC::This calculates the index X
+SnesPrgRom:33C5::Chooses message:\n00: <Nothing>\n01: "3" text\n02: "2" text\n03: "1" text\n04: "GO!" text\n05: "RACE OVER" text\n06: "I'M GONNA GET YOU!" balloon\n07: "YO! BURN RUBBER" balloon\n08: "OUTTA MY WAY!!"\n09: <Nothing>\n0A: "MOVE THE WRECK!" balloon\n0B: "ARE YOU BLIND?" balloon\n0C: "WHAT THE HECK??" balloon\n0D: "EAT DUST SUCKER" balloon *\n0E: "FASTER DUDE!" balloon\n0F: "LET'S GO!" balloon\n10: "CRASH N'BURN" balloon\n11: "CRUSIN' MAN" balloon\n12: "LATER GEEK!" balloon\n13: "YO BONE HEAD!!" balloon\n14: "OUTTA MY WAY!!" balloon\n15: "WATCH OUT!" balloon\n16: "AAARGH" balloon\n17: "OUCH" balloon\n18: "*?#9!!" balloon
+SnesPrgRom:33F5::This function returns a 1-byte number\nin the ACC
+SnesPrgRom:33FC::So, in here, the final X index\nwill be 4 bits long (between 0 and 16)
+SnesPrgRom:3462:zSubDrawP1Landscape
+SnesPrgRom:348D::Changes Actual IRQ handler address
+SnesPrgRom:34C4:zSubActualIRQHandler3_afterP1Landscape_P1HasLandscape:Always called from:\n$EC72\nat the scanline where the P1 half-screen\nlandscape finish drawing.\nIt runs:\n- Every frame that the p1 half-screen\ndraws at least one scanline of landscape\n\nThis one writes the next pointer address\nfor the IRQHandling\nWrites $B57B (Handler4) when P2 will\nrender landscape\nWrites $B5B6 (Handler2) when P2 will not\nrender landscape
+SnesPrgRom:357B:zSubActualIRQHandler4_scanline108_DrawP2Landscape:Always called from:\n$EC72\nat scanline 108, where the P1\nhalf-screen ends.\nIt runs:\n- Every frame that the p2 half-screen\ndraws at least one scanline of landscape\n\nThis one writes the next pointer address\nfor the IRQHandling\nSeems to always write B5E2 (Handler5)
+SnesPrgRom:35B6:zSubActualIRQHandler2_scanline108_P2NoLandscape:Always called from:\n$EC72\nat scanline 108 (just after p1 half-screen\nhas finished drawing)\nIt runs:\n- Every frame that the p2 is\n"going downhill", i.e., when the \nlandscape background does not appear\non p2 screen.\n\nThis one writes the next pointer address\nfor the IRQHandling\nSeems to always write B6D1 (Handler1)
+SnesPrgRom:35E2:zSubActualIRQHandler5_afterP2Lanscape_P2HasLandscape:Always called from:\n$EC72\nat the scanline where the P2 half-screen\nlandscape finish drawing.\nIt runs:\n- Every frame that the p2 half-screen\ndraws at least one scanline of landscape\n\nThis one writes the next pointer address\nfor the IRQHandling\nAlways writes $B6D1 (Handler1)
+SnesPrgRom:3631:zSubMaybeInitializeTerrain:When disabled, the terrain\nwill not be visible
+SnesPrgRom:36D1:zSubActualIRQHandler1_scanline224:Always called from:\n$00EC72\nat scanline 224 (after drawing screen,\nbut before v-blank)\nIt runs every frame that the race screen\nis active
+SnesPrgRom:3756::This is set at $84B2 at the race start\nIts value is $B75A\nIt is only zeroed after race, so,\nduring race, it will always jump to B75A
+SnesPrgRom:375A:zSubXXX2
+SnesPrgRom:39B7:zCalculateP1LandscapeRotation
+SnesPrgRom:39C9:zSetP1LandscapeRotation
+SnesPrgRom:39CB:zCalculateP2LandscapeRotation
+SnesPrgRom:39DD:zSetP2LandscapeRotation
+SnesPrgRom:3AC8::Normal path (before dawn)
+SnesPrgRom:3ACB::Normal path (dawnless track)
+SnesPrgRom:3ACE:zCreateDawnEffect
+SnesPrgRom:3AEA::Reaches here:\n- In the start of the dawn (3 frames)\n- After the dawn is complete (every frame)
+SnesPrgRom:3BB0::Reaches here:\n- Before dawn (every frame)
+SnesPrgRom:3BC0:zEndOfDayAndNightColorMath
+SnesPrgRom:3D03:zXXXChangeP1Speed_4:Gets here when P1 is inside pitstop\nIt manages the ramp up from 170Km/h (#$1700)\nto around 215 km/h (around #$237E)
+SnesPrgRom:3D08:zTargetTopSpeedReached:Gets here when A < #$0188\nSpeed is around #$237E
+SnesPrgRom:3D1B:zXXXChangeP1Speed_5:Gets here when P1 is inside pitstop\nIt manages the ramp down from around\n215 km/h to 0km/h
+SnesPrgRom:3D20:zTargetNegativeSpeedReached:It gets here from $BD19
+SnesPrgRom:3D4C:zXXXChangeP1Speed_6:Accelerating while leaving pitstop
+SnesPrgRom:3F14:zSubCalledBeforeRace1
+SnesPrgRom:3F44:zSubInitializeScreen:When disable, nothing gets drawn\non screen.\n\nIt is very probable that this breaks\nthe simulation too
+SnesPrgRom:4182:zSubMaybeInitializeLandscape:When disabled, the landscape gets\nwrong sprites, but continue moving\nsideways\n\nLandscape is on Background 2
+SnesPrgRom:4184:zSubCopyDataToVRAM1_AboveLandscape:When removed, the tiles above\nthe landscape are corrupted
+SnesPrgRom:419D:zSubCopyDataToVRAM2
+SnesPrgRom:41B8:zSubCopyDataToVRAM3_Landscape:If you change the track number,\nthe equivalent landscape will be copied\nbut it will show on screen with the \ncurrent track palette.
+SnesPrgRom:41E4:zSubCopyDataToVRAM4
+SnesPrgRom:4201:zSubCopyDataToVRAM5
+SnesPrgRom:4230:zSubMaybeInitializeRoad:When disabled, remove the\nroad (lanes/asphalt) from the screen \n\nRoad is on Background 3
+SnesPrgRom:45B2:zSubInitializeCarSprites:When disabled, car sprites\nare not drawn.\n\nThis is probably where the car colors\nare decided
+SnesPrgRom:46BB:zSubBeforeRaceXXX1:Does something with track sectors
+SnesPrgRom:4722:zSubPrintInitialHUDTiles:But not the minimap\n\nWhen disabled, all hud but the minimap\ndisappear\n\nUse the tilemap viewer to disassembly\nthis subroutine
+SnesPrgRom:4756:zRoutinePrintP1Velocimeter
+SnesPrgRom:47AA:zRoutinePrintP1Clock
+SnesPrgRom:47B0::0
+SnesPrgRom:47B9::'
+SnesPrgRom:47BF::0
+SnesPrgRom:47C8::"
+SnesPrgRom:47D7:zRoutinePrintP1Tachometer
+SnesPrgRom:483D:zRoutinePrintP1Gear
+SnesPrgRom:484D:zPrintAutoGear:A
+SnesPrgRom:4853::U
+SnesPrgRom:4859::T
+SnesPrgRom:485F::O
+SnesPrgRom:4867:zPrintGearNotAuto:G
+SnesPrgRom:486D::E
+SnesPrgRom:4873::A
+SnesPrgRom:4879::R
+SnesPrgRom:4885::Big "1" upper
+SnesPrgRom:4891:::
+SnesPrgRom:4897::Big "1" lower
+SnesPrgRom:489D:zRoutinePrintP1Nitro
+SnesPrgRom:48A3::N
+SnesPrgRom:48A9::x
+SnesPrgRom:48AF::3
+SnesPrgRom:48B5:zRoutinePrintP1Position
+SnesPrgRom:48B9::X = pos + 1 // 1-indexed
+SnesPrgRom:48BA::1st, 2nd and 3rd are different
+SnesPrgRom:48BF:z4thOrMore
+SnesPrgRom:48C4::In here, A equals:\n\nA = $4 // If pos==0\nA = $8 // If pos==1\nA = $C // If pos>=2
+SnesPrgRom:48CE:z1DigitPosition
+SnesPrgRom:492F:zRoutinePrintP2Velocimeter
+SnesPrgRom:4989:zRoutinePrintP2Clock
+SnesPrgRom:49B0:zRoutinePrintP2Tachometer
+SnesPrgRom:4A16:zRoutinePrintP2Gear
+SnesPrgRom:4A76:zRoutinePrintP2Nitro
+SnesPrgRom:4A8E:zRoutinePrintP2Position
+SnesPrgRom:4B08:zRoutinePrintP1KPHorMPH
+SnesPrgRom:4B6C:zRoutinePrintP2KPHorMPH
+SnesPrgRom:4BD0:zRoutineAnotherThing:This writes some other data to VRAM
+SnesPrgRom:4C21:zRoutinePrintP1Fuel
+SnesPrgRom:4C51:zRoutinePrintP2Fuel
+SnesPrgRom:4C9B:zSubMaybeInitializesColorPalette
+SnesPrgRom:4CDB:zSubInitializesColorPalettes:When disabled, all colors but road and\nterrain are messed up\n\nMinimap is first drawn on this subroutine
+SnesPrgRom:4DE2:zRoutineOnlyHappensNightTracks
+SnesPrgRom:4E32:zEndOf_RoutineNightTracks
+SnesPrgRom:4E43:zLoop_WaitForInterrupt
+SnesPrgRom:4E48::During interrup, DMA is enabled\nand Minimap is drawn
+SnesPrgRom:4E61:zSubUpdateHUD:This subroutine updates the HUD.\nIf it is disabled (RTS) the HUD\nwill continue appearing on screen,\nbut exactly as it is before race start
+SnesPrgRom:51B3:zCalculatesStopwatchNumbers:For the sprite addresses:\n$2C35 -> "0"\n$2C36 -> "1"\nand so on up to\n$2C3E -> "9"
+SnesPrgRom:51B6::If finishing time is set, use that instead of current frame
+SnesPrgRom:51C0::60 in decimal
+SnesPrgRom:51C7::Waiting for result of frames/60
+SnesPrgRom:51CE::Gets rest of division (frames to transform into cents)
+SnesPrgRom:51D3::Gets result of division (total seconds elapsed - might be more than 60)
+SnesPrgRom:51E2::waiting for result of seconds/60
+SnesPrgRom:51E9::Gets rest of division (seconds to display: 0 to 59)\nPuts that into X
+SnesPrgRom:51EC::This is the address for the sprite space of the minute unit
+SnesPrgRom:51F2::Address of the "0" sprite
+SnesPrgRom:51F8::Gets result of division (minutes)\nAdds it to the address for "0" (#$2C35)
+SnesPrgRom:51FB::Pushes minute unit into VRAM
+SnesPrgRom:520A::This is the address for the sprite space of the second tens
+SnesPrgRom:5214::Waiting for result of seconds/10 - This will separate both digits
+SnesPrgRom:5219::Pushes second tens into VRAM
+SnesPrgRom:5223::Pushes second units into VRAM
+SnesPrgRom:5226::This is the address for the sprite space of the cents tens
+SnesPrgRom:522F::The following gets the correct sprites from some tables
+SnesPrgRom:523C::zCalculateForP2Too
+SnesPrgRom:52C2:zCalculatesStopwatchNumbersEnd
+SnesPrgRom:56B6:zConstTableFramesToCentsUnitDigit:This table holds all of the sprite addresses for every possible frame:\nSee zConstTableFramesToCentsTensDigit for more info\n
+SnesPrgRom:572E:zConstTableFramesToCentsTensDigit:This table holds all of the sprite addresses for every possible frame:\nThe frame number is doubled to use the table as a 2 byte array\nFor instance, frame 0 goes to index 0 \nFrame: 0\nIndex: 0 ($D72E)\nResult: $2C35 (Which is the "0" sprite)\nFrame: 6\nIndex: 12 ($D73A)\nResult: $2C36 (Which is the "1" sprite)
+SnesPrgRom:587C:zSomethingScreenAlert1
+SnesPrgRom:58C2:zSomethingScreenAlert2
+SnesPrgRom:58CD:zSomethingScreenAlert3Player2
+SnesPrgRom:5913:zSubBeforeRaceXXX2:Fuel gets initialized ?again? here
+SnesPrgRom:5997:zInitializeFuel2
+SnesPrgRom:5A75:zSubCheckIfNeededAndCreateAlert:Many entry points:\n\nPRGROM:\n$0858C: During approach camera sequence\n$08664: During countdown\n$006F9: During race\n
+SnesPrgRom:5A81::Fuel low code?
+SnesPrgRom:5A8B::Enters here when:\nP1 fuel goes below $#3000
+SnesPrgRom:5A8E::Useless check. Probably evolution trash
+SnesPrgRom:5A90::Number of laps in the track?\n$0003 = 3 laps
+SnesPrgRom:5A93::branch if current lap > totalLaps
+SnesPrgRom:5A95::Only get here when currentLap < totalLaps\ni.e.: Race is not finished yet
+SnesPrgRom:5B0A::Low fuel threshold
+SnesPrgRom:5B0D::Branch if fuel is lower than $3000
+SnesPrgRom:5B9F::Change BNE to BRA to prevent p1 alerts
+SnesPrgRom:5BA1:zShouldPrintP1Alert
+SnesPrgRom:5BD8:decreasesCounterOfAlertFlashes
+SnesPrgRom:5BFC:counterIsStillPositive
+SnesPrgRom:5D31::Change BNE to BRA to prevent p2 alerts
+SnesPrgRom:5D33:zShouldPrintP2Alert
+SnesPrgRom:5D9C:zSubPushAlertMessageToVRAM:This subroutine possibly pushes only the first digit of the message\nPush message into VRAM buffers\nParameters: A = Pointer to message to Write\nP1:\n$#0000 - 1ST\n$#0001 - 2ND\n$#0002 - 3RD\n$#0003 - 4TH\n...\n$#0013 - 20TH\n$#0014 - FINAL LAP\n$#0015 - 2 LAPS TO GO\n$#001D - FUEL LOW\n#$001F - 3\n#$0020 - 2\n#$0021 - 1\n#$0022 - GO!\n$#0023 - RACE OVER\n$#002d - LETS GO\n\n#$003E - <p1 name>\n\nAnd for P2:\n$#003F - 1ST\n$#0040 - 2ND\n$#0041 - 3RD\n...\n$#0052 - 20TH\n$#0053 - FINAL LAP\n$#0054 - 2 LAPS TO GO\n$#005C - FUEL LOW\n#$005E - 3\n#$005F - 2\n#$0060 - 1\n#$0061 - GO!\n$#0070 - Yo bone head\n\n#$007d - <p2 name>\n
+SnesPrgRom:5DA6::Nothing to write. Return
+SnesPrgRom:5EA4-5EE3:zConstTrackNumberOfLapsList
+SnesPrgRom:60A4:zConstTrackInfo:Seems to be used to tell about dawn\ntimes
+SnesPrgRom:61ED:zConstAlertMessageMap
+SnesPrgRom:6C0E:zSubXXX3:Removing this subroutine\ncompletely breaks the game\nThe race appears to desynchronize
+SnesPrgRom:6C17::Loop until some IRQ handling happens
+SnesPrgRom:6C1A:zSubNMIHandler:This is only responsible for getting the joypad data\nIt waits for Auto Joypad read and then\nstores data into registers\n\nAfter the subroutine:\nFor P1:\n - $10 stores the new joypad data\n - $14 stores ???\nFor P2:\n - $12 stores the new joypad data\n - $16 stores ???
+SnesPrgRom:6C29::This read clears the RDNMI flag
+SnesPrgRom:6C2C:waitingForAutoJoypadRead
+SnesPrgRom:6C35::reads 16 bytes from joypad1\nCalling\n$10: x and\n$14: y, we have:\n\nx_n = joypadData\ny_n = ( !x_n-1 | y_n-1 ) & x_n\n\nWhich results to \ny_n = 0 when y_n-1=0 and x_n-1=1\ny_n = x_n (joypadData) otherwise\n\nIt seems to be used as a debouncer of sorts\nThe first case (y_n != x_n) seems to only happen:\n- when changing gears\n- when using nitro
+SnesPrgRom:6C3A::$10 receives the current joypad data
+SnesPrgRom:6C43::The calculation for $14 is as follows:\n$14 = ((!previousJoypadData) | $14) & joypadData
+SnesPrgRom:6C45::Same for P2
+SnesPrgRom:6C5B:zSubIRQHandler:This subroutine does the usual\nhousekeeping involving IRQ.\n\n- Push everything into stack (A,X,Y,D,B)\n- Clear the IRQ flag\n- Sets D to 0\n- Call the real IRQ Handler\n- Pulls everything from stack (B,D,Y,X,A)\n\nSomething strange happens at EC62
+SnesPrgRom:6C62::This/next instruction combo is strange.
+SnesPrgRom:6C66::clear irq flag by reading it
+SnesPrgRom:6C6E::sets D to 0
+SnesPrgRom:6C72::Calls real IRQ Handlers\n\nThe flow of handlers go like this:\n- $B6D1 (Handler1) gets called every frame after screen draw (scanline 224)\n- if P1 has landscape\n    $B4C4 (Handler3) - at the end of landscape draw\n  else:\n    continue\n- if P2 has landscape:\n    $B57B (Handler4) - at midscreen (scanline 108)\n    $B5E2 (Handler5) - at the end of landscape draw\n  else:\n    $B5B6 (Handler2)
+SnesPrgRom:80FA::Uses frame counter $OE when nitro is pressed
+SnesPrgRom:8129::Only branch on odd frames
+SnesPrgRom:812B::For even frames:
+SnesPrgRom:8157::Execution continues here after branch on even frames
+SnesPrgRom:8185::Uses race frame counter when nitro is on second half?
+SnesPrgRom:2D2E0:zSubProbablyUpdateP1AndP2:This takes around 3400 cycles\nIt finishes at 05E8E8\n\nWhen disabled, both players stop working in their place\nAI BOTS and HUD continue to work normally 
+SnesPrgRom:2D39C::Should geardown?
+SnesPrgRom:2D3A6::Should gearup?
+SnesPrgRom:2D3B0:zIsManualGear
+SnesPrgRom:2D3B8::Is gear down button pressed?
+SnesPrgRom:2D3BC::Decrease gear
+SnesPrgRom:2D3BF:zGearDownCalculationDone:It is already on 5th gear
+SnesPrgRom:2D3C7::Is gear up button pressed?
+SnesPrgRom:2D3CB::Increase gear
+SnesPrgRom:2D3CC:zGearUpCalculationDone:Puts new gear into memory
+SnesPrgRom:2D3CF:zBranchNegativeSpeed
+SnesPrgRom:2D3D6:zGearCalculationDone
+SnesPrgRom:2D3EE::At this point:\nA=(rf>>6)\n\nrf: remaining fuel\n(initial fuel - current fuel)
+SnesPrgRom:2D3EF::If Nitros > 0\nY = $#3A + previous value of A\nelse\n
+SnesPrgRom:2D439:zXXXChangeP1Speed_7
+SnesPrgRom:2D486:zXXXChangeP1Speed_8
+SnesPrgRom:2D4AD:zNotPressingAccelerator
+SnesPrgRom:2D4B0:zPressingAccelerator
+SnesPrgRom:2D4BD:zLessThan10PlayersFinishedAndHasFuel
+SnesPrgRom:2D4E4:zFasterThanGearLimit:This should subtract some\nunits of the speed because the gear\nis too low.
+SnesPrgRom:2D4F3:zXXXChangeP1Speed_9
+SnesPrgRom:2D524:zXXXChangeP1Speed_10
+SnesPrgRom:2D529:zEndOfAccelerationCalculation:Gets here when not pressing\nthe accellerator button.
+SnesPrgRom:2D542:zXXXChangeP1Speed_11
+SnesPrgRom:2D555:zRoutineBreaking_Start:This is the only occurrence of\nAD 78 1F (LDA $1F78)\nin the PRGROM
+SnesPrgRom:2D55A::Apparently this is the only code\nthat checks for the break button (P1)
+SnesPrgRom:2D55C:zNotPressingBreak
+SnesPrgRom:2D55F:zPressingBreak:Break trick probably happens here\nResearch deeper later.\n\nProbably the routine for acceleration\nhas a bug and does not jump over\nthe routine for break.
+SnesPrgRom:2D581:zCurrentSpeedIsNegative
+SnesPrgRom:2D5AE:zCurrentSpeedIsPositive
+SnesPrgRom:2D5E4:zXXXChangeP1Speed_12_Breaking
+SnesPrgRom:2D5E7:zRoutineBreaking_End:(This is already the first opcode\nfor the next routine)
+SnesPrgRom:2D5EB:zFuelCalculation
+SnesPrgRom:2D669:zOutOfFuel
+SnesPrgRom:2D67B:zUpdatesFuel:This should always make the fuel\ngo lower\n\nThis is the only place that the fuel\ngets update because of acceleration.\nOther places are:\n- Initialization\n- Fueling\n- Rounding to zero
+SnesPrgRom:2D680:zEndOfFuelCalculation
+SnesPrgRom:2D686:zAccelerationCalculation
+SnesPrgRom:2D705::gets here when not grass
+SnesPrgRom:2D739:zXXXChangeP1Speed_13
+SnesPrgRom:2D7F1::Calling it POS, after\nX = (POS>>4) & $#FFFE\nwe have an index X that goes from\n0: Start of the lap\n<track_size>: End of the lap\n(At Las Vegas this is around $#0580)
+SnesPrgRom:2D7FC::Here, X is between $#0000 and track size\nBeing small and greater than 0 near\n(but after) the lap start \n\nNote:\nTrack size is around $#0580 in Las Vegas
+SnesPrgRom:2D800::Masks out MSB and LSB !??
+SnesPrgRom:2D804::Seems to be between\n$000 and $19E
+SnesPrgRom:2D807::In here Y seems to reflect the number\nof lanes in the road\n\nY=$00 -> 3 lanes\nY=$04 -> 5 lanes\nY=$08 -> 7 lanes\nY=$0C -> 7 lanes (pit stop right)
+SnesPrgRom:2D80B::gets here every frame
+SnesPrgRom:2D80D:zRightOfMiddlePoint:A holds the y-position\nY holds the lane index\n$017D,Y contains the limit of grass to the right\nIf we are to the right of that,\nthen colision with grass
+SnesPrgRom:2D812:zStandingOnRightSideGrass
+SnesPrgRom:2D825:zLeftOfMiddlePoint:A holds the y-position\nY holds the lane index\n$017B,Y contains the limit of grass to the left\nIf we are to the left of that,\nthen colision with grass
+SnesPrgRom:2D82A:zStandingOnLeftSideGrass
+SnesPrgRom:2D83B:zXXXCalculateGrassSlowdown:only gets here when on grass
+SnesPrgRom:2D858:zXXXChangeP1Speed_14_Grass
+SnesPrgRom:2D85B:zProbablyYPositionCalculation_Start
+SnesPrgRom:2D860::Enter here when some obstacle crashes\nhappens before in the frame
+SnesPrgRom:2D863:zUsualPath
+SnesPrgRom:2D87C:zSpeedIsVeryLow:Less than #$0280 ~ 15KPH\nThis probably increases the turning\npower if the speed is very low\n
+SnesPrgRom:2D882:zEndOf_SpeedIsVeryLow
+SnesPrgRom:2D894:zRoutineRightButton_Start:This is the only occurrence of\nAD 82 1F (LDA $1F82)\nin the PRGROM
+SnesPrgRom:2D89B:zIsPressingRight
+SnesPrgRom:2D8B3:zSpeedIsGreaterThanZero
+SnesPrgRom:2D8C8:zRoutineRightButton_End:zRoutineRightButton_End
+SnesPrgRom:2D8CB:zRoutineLeftButton_Start:This is the only occurrence of\nAD 80 1F (LDA $1F80)\nin the PRGROM\n\nIf you press both right and left,\nboth paths are going to be calculated.
+SnesPrgRom:2D8D2:zIsPressingLeft
+SnesPrgRom:2D902:zRoutineLeftButton_End
+SnesPrgRom:2D905:zEndOf_IsPressingLeft
+SnesPrgRom:2D965:zWhatIs1EEC_2:Will always* store zero here
+SnesPrgRom:2D96A:zRoutineFixCarYPositionAndDirectionAfterObstacleCrash
+SnesPrgRom:2D992:zWhatIs1EEC_3:Gets here sometimes some frames\nafter hitting road obstacles\n\nIt kinds of counter-steer what happens\nat $F70B
+SnesPrgRom:2DA0C:zXXAWriteYPosition1_EveryFrame
+SnesPrgRom:2DA79:zXXAWriteYPosition2_Turn
+SnesPrgRom:2DB5F:z2PlayersRace
+SnesPrgRom:2E4B6::Changing this to NOP\nmakes some of the collisions with\nanother cars do not happen.\n\nIf $E4BB is changed to NOP too, then\nall collision with cars cease.
+SnesPrgRom:2E4BB::Changing this to NOP\nmakes some of the collisions with\nanother cars do not happen.\n\nIf $E4B6 is changed to NOP too, then\nall collision with cars cease.\n\nGot this info from\n"Don't slow down against cars"\ncheat
+SnesPrgRom:2E51E::Just hit another car
+SnesPrgRom:2E556:zXXXChangeP1Speed_15
+SnesPrgRom:2E72B:zXXXChangeP1Speed_16
+SnesPrgRom:2E7B1:P1FinishedLap
+SnesPrgRom:2E7C3:P1FinishedRace
+SnesPrgRom:2E821:zFinishedLapButNotRace
+SnesPrgRom:2E826:zDidntFinishLapNeitherRace
+SnesPrgRom:2E857:P2FinishedLap
+SnesPrgRom:2E869:P2FinishedRace
+SnesPrgRom:2E940:zXXXChangeP1Speed_17
+SnesPrgRom:2EE16::Equivalent to 05D3F2 for P1\n
+SnesPrgRom:2F6EA:zXXXChangeP1Speed_18
+SnesPrgRom:2F6F5:zSubCheckHit
+SnesPrgRom:2F6FA:zRightSideOfRoad
+SnesPrgRom:2F6FF:zEndOf_RightSideOfRoad
+SnesPrgRom:2F702::Will store\n#$B000 if the car is on the right side\nor #$5000 if the car is on the left side\n\nThis probably turns the car inwards when\nit hits the obstacles on the side of\nthe road, helping the player to get back\non track\n\nIn the game, we see that the car is pushed\ninwards, but points outwards.\n\nAlso, cacti does not bring the code\nhere, while small bushes, signs\nand small yellow balls do.
+SnesPrgRom:2F70B:zWhatIs1EEC_1
+SnesPrgRom:2F71B:zXXXChangeP1Speed_19
+SnesPrgRom:38000:zSubCalledBeforeRaceAudioSetups
+SnesPrgRom:6AC51:zRotationTable
+SnesPrgRom:6C41B-6C422:zConstDisplay:For easter egg:\nDisplay Credits
+SnesPrgRom:6C423-6C42A:zConstCredits:For easter egg:\nDisplay Credits
+SnesPrgRom:78000:zNMIHandler:It will:\n- Save whatever is in registers to stack\n- Check something in Flag_1\n- Check for DMA enable\n- Set screen brightness\n- Wait for autojoypad loop\n- Increase global frame counter\n- Probably check for input from p1 and p2\n- Restore whatever was in registers from stack
+SnesPrgRom:78014:zFlag1Section:Enters here when $90 == #$004C\n\nInstances:\n- During options screen fadeout
+SnesPrgRom:7801C:zEndOf_Flag1Section
+SnesPrgRom:78026:zDMAEnableSection
+SnesPrgRom:7802B:zEndOf_DMAEnableSection
+SnesPrgRom:78030::$0F for maximum brightness
+SnesPrgRom:78033::? Clear NMI flag
+SnesPrgRom:78038:zAutoJoypadReadLoop
+SnesPrgRom:7803B::Get autojoypad status
+SnesPrgRom:7803F:zAutoJoypadReadEnded
+SnesPrgRom:78041::Increase global frame counter
+SnesPrgRom:78044:zProbablyCheckForP1Input
+SnesPrgRom:78054:zProbablyCheckForP2Input
+SnesPrgRom:78064:zCleaningUp
+SnesPrgRom:7806D:zSubEntireNotRaceScene:This encompasses everything that is not a race\n- The bootup sequence up to the first race\n- The points sequence from a race up to the next one\n(Possibly others)
+SnesPrgRom:7815A:zEntryPointForTitleScreen
+SnesPrgRom:781E7::Location screen
+SnesPrgRom:781ED:zDemoIsRunning_TitleScreen
+SnesPrgRom:783D7:zCallTitleScreenAfterFailedRace
+SnesPrgRom:78454::Results screen
+SnesPrgRom:78481::World Ranking screen
+SnesPrgRom:78487:zFadeoutAfterPointsSequenceComplete
+SnesPrgRom:784A9:zHumanAtTop5_ProceedToNextRace
+SnesPrgRom:784AF::Reaches here with two options:\n\nNotLastTrackOfTheCountry:\nCarry clear, A = 1\n\nLastTrackOfTheCountry:\nA = 0\nCarry: if P1 is in top 4, carry clear\nelse: carry set
+SnesPrgRom:784B1:zP1Qualified
+SnesPrgRom:784CB:zNoHumanAtTop5_FailedRace
+SnesPrgRom:7864D:zQualificationScreen:It gets here on:\n\n- Failed to qualify for next race\n- Qualified for next country\n- ? Failed to qualify for next country
+SnesPrgRom:78653:zQualificationScreenFadedOut:Prepare to continue
+SnesPrgRom:786B0::Is P1 on top 5 positions?
+SnesPrgRom:786B5:zDidNotFailRace
+SnesPrgRom:786CB:zFailedRace
+SnesPrgRom:786E7:zCalculateFinalP1AndP2Positions:It adds 1 in the end for each.
+SnesPrgRom:786F1::if Index < 2
+SnesPrgRom:786F3:zP1OrP2
+SnesPrgRom:7871A:zSubCheckIfHumanPlayerIsAtTop5Positions:Check to see if a human is on top 5\nIt manages this by looking at the position\nmap for the equivalent indexes.\nIf 2 player game, it will look for 0 or 1\n\nReturns response on Carry flag:\nCarry set: NO.\nCarry clear: YES
+SnesPrgRom:78720:zStartLoop_HumanAtTop5
+SnesPrgRom:7872F:zFoundHumanAtTop5
+SnesPrgRom:78732::Carry set: NO. Carry clear: YES
+SnesPrgRom:78733:zIncreaseTrackNumber:It also does some logic when is the\nlast track of the country:\n- zeroes world ranking
+SnesPrgRom:78748:zNotLastTrackOfTheCountry
+SnesPrgRom:78750:zLastTrackOfTheCountry
+SnesPrgRom:78753:zZeroWorldRankingPointsLoop
+SnesPrgRom:7877A:zP1found
+SnesPrgRom:78C95:zEntireTitleScreen
+SnesPrgRom:78E1D:zRotateTextTop
+SnesPrgRom:78E49:zFinishRotateTextTop
+SnesPrgRom:78E7B:zStartRotateTextGear
+SnesPrgRom:78EA1:zRotateTextGear
+SnesPrgRom:78ECD:zFinishRotateTextGear
+SnesPrgRom:78F6C::Is demo supposed to be finished?
+SnesPrgRom:78F71:zFinishDemoAlready
+SnesPrgRom:790E6:zBacksUpInformationAndGetRandomTrack
+SnesPrgRom:790FE::This gets the current frame counter\nmodulo 32 (the total number of tracks)\n\nIt would get a random track to play on\nthe demo, but it will always run the \nsame track (namely track 0) if no input\nis given from the start, because the \nframeCounter will be always at a\nmultiple of 1200 (which is 0 modulo 32)
+SnesPrgRom:7918B:zSubMenuScreenFadeIn
+SnesPrgRom:79281:zChoosesCPUCarFromFrameCounter:This routine makes the probability skewed\nbecause it has 1/4 of chance for each car\nbut, if the 1/4 chance chooses P1 car,\nthen it will wait one NMI cycle and \nalways choose the next car. So, the chances are:\n\n1/2: Next car\n1/4: Other car 1\n1/4: Other car 2\n\nFor instance, if P1 is red, then:\n1/2: White\n1/4: Purple\n1/4: Blue\n\nAlso, this is VERY inefficient, as it waits\na whole frame 1/4 of the time. Changing\n   BEQ $9281\nfor\n   INC\n   NOP\nwould have the same effect but not wait the frame.\n\nThe only possible reasoning for that\nis that the frame counter cannot be on that mod 4 value\nor else things would break.
+SnesPrgRom:79284::If yes, return. Else:
+SnesPrgRom:79286::Gets seed from frame counter
+SnesPrgRom:79289::gets mod 4
+SnesPrgRom:7928C::Is it equal to P1 car?
+SnesPrgRom:7928F::If yes, loop, else:\nIf the code enter this loop, it will wait\nall the way to the NMI to increase this\nframe counter and exit the loop
+SnesPrgRom:79291::Defines computer car
+SnesPrgRom:79294:zDoneChoosingP2CarType:Return
+SnesPrgRom:7933B:zCannotAccessCountry:Source for this info:\nCheat code "Race in any country"
+SnesPrgRom:79393:zCanAccessCountry
+SnesPrgRom:795B6:zSubCheckForDisplayCredits:This is an easter egg that appears when\nyou name players as:\n" DISPLAY"\n" CREDITS"
+SnesPrgRom:795B9::Proceed only with 2 players game
+SnesPrgRom:795BB:zDoNotDisplayCredits
+SnesPrgRom:795BC:zCheckIfStringsAreEqual
+SnesPrgRom:795BF:zLoopStart_StringCheck
+SnesPrgRom:795C8:zEqualUpToHere
+SnesPrgRom:795D1:zStillEqualUpToHere
+SnesPrgRom:795D5:zShouldDisplayCredits
+SnesPrgRom:79635::Display Credits screen
+SnesPrgRom:799BE:zUpdatesControlMethod:It uses the map on $0DC656 to save\nthe current control method to\n$1F76\n\nIt happens when you select the control\nmethod on the menu.\n\nControl Method / X index:\nA: $#0000\nB: $#0010\nC: $#0020\nD: $#0030\n\nFor P1: Y = $#0000\nFor P2: Y = $#001D
+SnesPrgRom:79DB2:zSubScreenFadeIn:Apparently, this is called for every\nfade in of a screen
+SnesPrgRom:79DC5:zSubScreenFadeOut
+SnesPrgRom:79E88:zSubScreen_8Seconds:Apparently, this is called for every\nscreen that waits for player input to exit.\nIt only goes out of the subroutine\nafter the player leaves the screen.\n\nExamples:\nDisplayCredits: at $0F9635 (PRGROM: $79635)\nLocationScreen: at $0F81E7 (PRGROM: $781E7)\nResults screen: at $0F8454 (PRGROM: $78454)\nWorld Ranking screen: at $0F8481 (PRGROM: $78481)\n\nThere is an equivalent subroutine\nfor screens that last for 24 seconds\nat $0F9EAC (PRGROM: $79EAC)\n\nat $0F95B6 (PRGROM: $795B6)
+SnesPrgRom:79E8B:z200FramesLoop:This is equivalent to 8 seconds
+SnesPrgRom:79E95::Probably checks for p1 or p2 input\n(Through the flags set on NMI)
+SnesPrgRom:79EAC:zSubScreen_24Seconds:Identical to the subroutine\nat $0F9E88 (PRGROM: $79EA88).\nThe only difference is the time wait\n8s/24s\n\nInstances:\nQualification screen: at $0F864D (PRGROM: $7864D)\n(This is for both race/country and qualify/fail)
+SnesPrgRom:79ED3:zSetupFailedRaceScene
+SnesPrgRom:7A24D:zSubWaitForNMI
+SnesPrgRom:7A251:zWaitForNMILoop
+SnesPrgRom:7A258:zSubRotateMode7
+SnesPrgRom:7A2D5:zStartCalculating1E:For "Top":\nX starts at 009C\nand goes up to 01FC, then goes to 0000\nand then  goes up to 009C\n\nFor "Gear":\nX starts at 00A0\nand goes up to 01FC, then goes to 0000\nand then  goes up to 0080\n\nBoth of them rotate about 360 degrees, finishing up\nX Always increasing by 4)\n\nX=0000 is the same rotation for both animations\n(almost vertical, with up pointing left)
+SnesPrgRom:7A2F3:zStartCalculating20
+SnesPrgRom:7A313:zStartCalculating22
+SnesPrgRom:7A337:zStartCalculating24
+SnesWorkRam:0000:zJumpToNMIHandler
+SnesWorkRam:0004:zJumpToIRQHandler
+SnesWorkRam:0008:zVarNMIFlag_2
+SnesWorkRam:000A:zVarActualIRQHandlerPointer
+SnesWorkRam:000E:zRaceFrameCounter:It seems to only be used in nitro calculations at $08185 and $080FA
+SnesWorkRam:0010:zVarCurrentP1JoypadData
+SnesWorkRam:0012:zVarCurrentP2JoypadData
+SnesWorkRam:001A:zVarAuxRemainderFrames
+SnesWorkRam:0042:zAuxWillWriteToINIDISP
+SnesWorkRam:0090:zVarNMIFlag_1
+SnesWorkRam:00B0:zVarP1LandscapeRotation
+SnesWorkRam:00C4:zVarP2LandscapeRotation
+SnesWorkRam:00EB:zVarProbablyVeryImportantPointer
+SnesWorkRam:0100:zVarDayOrNightRelated
+SnesWorkRam:0102:zVarCounterUntilDawn:Full day tracks ($00CDD4):\n- Initializes to FFFF\n\nOther tracks ($00CDE7):\n- Full night: #$FFFF\n- Hiroshima: #$09FF (42 seconds)\n- Cologne: #$0AFF (46 seconds)\n- Black Forest: #$04FF (21 seconds)
+SnesWorkRam:0112:zVarP1MinimapSpritePosition
+SnesWorkRam:0114:zVarP2MinimapSpritePosition
+SnesWorkRam:0118:zVarAlertMessageToShow
+SnesWorkRam:011C-011D:zVarAuxAlert1:Receives $#FFFF when fuel is low
+SnesWorkRam:0120-0121:zVarAuxAlert3:2bytes
+SnesWorkRam:0124-0125:zVarAuxAlert2:Receives #$001d when fuel is low\n\nAlso used to store final P1 position
+SnesWorkRam:0128:zVarCounterOfAlertFlashes
+SnesWorkRam:0200:zVarMaybeNumberOfSectors:?Number of sectors on this track?
+SnesWorkRam:0204-0205:zVarP1Related:It seeems to change depending on where\nP1 is on the track\nIt may also change based on position
+SnesWorkRam:0206:zVarP2Related
+SnesWorkRam:020A-0211:zVarCPURelatedList:Each entry is 18 bytes long.\nThe whole list is 20*18 = 368 bytes\n\n0371 is a lap counter
+SnesWorkRam:0212-0223:zVarCPU1Info:Byte index map:\n\n0: Player index (P1,P2,Simon,Ritchie,etc)\n1: Car Sprite\n(0-driving left,\n2-driving less left,\n4-drivind forward,\n6-driving less right,\n8-driving right)\n2-3: Right-Left position (Signed\ninteger, FFFF=0000=mid of road)\n4-6: Always 0 for P1\n7-8: Front-Back position (Unsigned,\n0 is start of the lap, increases as\nthe car goes forward)\n9: Lap Number\n10-17: Always zero for P1\n\nThis is a complete mess of a map\nThe order is as follows:\nThe first element is the car that is\nmore forward on the track i.e. closest\nto the start line, but before it.\n\nThe last element is the car that is \nlast on track, i.e., closest to the\nstart line, but after it.
+SnesWorkRam:0224-0235:zVarCPU2Info
+SnesWorkRam:0236-0247:zVarCPU3Info
+SnesWorkRam:0248-0259:zVarCPU4Info
+SnesWorkRam:025A-026B:zVarCPU5Info
+SnesWorkRam:026C-027D:zVarCPU6Info
+SnesWorkRam:027E-028F:zVarCPU7Info
+SnesWorkRam:0290-02A1:zVarCPU8Info
+SnesWorkRam:02A2-02B3:zVarCPU9Info
+SnesWorkRam:02B4-02C5:zVarCPU10Info
+SnesWorkRam:02C6-02D7:zVarCPU11Info
+SnesWorkRam:02D8-02E9:zVarCPU12Info
+SnesWorkRam:02EA-02FB:zVarCPU13Info
+SnesWorkRam:02FC-030D:zVarCPU14Info
+SnesWorkRam:030E-031F:zVarCPU15Info
+SnesWorkRam:0320-0331:zVarCPU16Info
+SnesWorkRam:0332-0343:zVarCPU17Info
+SnesWorkRam:0344-0355:zVarCPU18Info
+SnesWorkRam:0356-0367:zVarCPU19Info
+SnesWorkRam:0368-0379:zVarCPU20Info
+SnesWorkRam:1B86:aux1:03bc when frame counter is odd\n03ce when frame counter is even
+SnesWorkRam:1E56:zVarTrackNumberOfLaps
+SnesWorkRam:1E5A:zVarP1Speed:Hit lap post?
+SnesWorkRam:1E5C:zVarP2Speed
+SnesWorkRam:1E5E-1E5F:zVarP1Engine:2 bytes
+SnesWorkRam:1E60-1E61:zVarP2Engine:2 bytes
+SnesWorkRam:1E62-1E63:zVarP1Fuel:Starts at #$A7FF (43007) and goes to 0\nThis happens at $00D997
+SnesWorkRam:1E64-1E65:zVarP2Fuel:Starts at 43007 and goes to 0\n2 bytes
+SnesWorkRam:1E6C:zVarP1NumberOfNitros:It also stores the nitro counter when\nthe nitro is on
+SnesWorkRam:1E72:zVarP1Gear
+SnesWorkRam:1E74:zVarP2Gear
+SnesWorkRam:1E76:zVarP1CurrentLap:$#FF before going through start line at the race start
+SnesWorkRam:1E77:zVarP1PassedStartLine:passed start line (255 false, 0 true)
+SnesWorkRam:1E78:zVarP2CurrentLap
+SnesWorkRam:1E79:zVarP2PassedStartLine:passed start line (255 false, 0 true)
+SnesWorkRam:1E7A:zVarP1Position:It goes from 0 to 19 (0 is first place)
+SnesWorkRam:1E7C:zVarP2Position
+SnesWorkRam:1E7E:zAuxMovementYRelated2
+SnesWorkRam:1E82:zAuxMovementYRelated1
+SnesWorkRam:1E86-1E87:zVarP1PitStopStatus:Map:\n\n$0000 - Race, not on pit stop\n$FFFF - Written on $05D77C (first frame on pit stop)\n$FFFE - DEC on $009132 \n$FFFD - DEC on $00913B\n$FFFC - DEC on $009042\n$FFFB - DEC on $009151 (fadeout ends)\n$FFFA - DEC on $00BD23 (reaches 0 speed)\n  - starts fueling\n$FFF9 - DEC on $009199 (accel pressed)\n$FFF9 - DEC on $009173 (full tank)\n\n$FFF8 - DEC on $0091B9 (animation end)\n$FFF7 - DEC on $0091FF (fadeout end)\n$FFF6 - DEC on $008E30\n$FFF5 - DEC on $00920C\n$0000 - STZ on $00921F (fadein starts)
+SnesWorkRam:1E88-1E89:zVarP2PitStopStatus
+SnesWorkRam:1E8A-1E8B:zVarP1YPosition:Left<->Right axis\n$0000=$FFFF=middle of the road\nPositive numbers are to the right of middle\nNegative numbers are to the left of middle\nLeftmost position: $8001\nRightmost position: $7FFF
+SnesWorkRam:1E90:zAuxBreakingRelated1
+SnesWorkRam:1E92:zAuxBreakingRelated3
+SnesWorkRam:1E94:zAuxBreakingRelated2
+SnesWorkRam:1EAE:zVarCompleteFrameCounter:This variable is incremented inside the IRQ handler
+SnesWorkRam:1EB0:zVarNumberOfPlayersWhoCrossedFinishLine:Increased at 05E88C (P1 and P2)\nIncreased at 00A1F9 (CPUs)
+SnesWorkRam:1EB4:zVarP1AndP2HaveFinishedRace:Bitmask for P1 and P2\n\nBit 1: P1 (unset at TRB at 05E7D2)\nBit 2: P2 (unset at TRB at 05E878)\n\nIf both are unset, finishes the race at\n$008788\n\nOther interest points in ROM:\nInitialized at $0082FA (with #$03)\n
+SnesWorkRam:1ED7:zVarP1XPositionRelated:This is not exactly the P1 X Position\nbut is related to that.
+SnesWorkRam:1EE0:zFadeoutAfterRace_Countdown
+SnesWorkRam:1EE2-1EE3:zAuxSpeedRelated:Used for P1 and P2
+SnesWorkRam:1EE8:zVarP1CarTypeIndexOffset:Car type:\n0: $0000\n1: $0010\n2: $0020\n3: $0030
+SnesWorkRam:1EEA:zVarP2CarTypeIndexOffset
+SnesWorkRam:1EEC-1EED:zAuxMovementYRelated3:Is zeroed at\n$05E8DA\n\nPoints that STAs to $1EEC\n(PRGROM search for 8D EC 1E)\n$05D965 (Stores 0)\n$05D992\n$05F70B (Stores #$0600)
+SnesWorkRam:1EF2:zAuxMovementYRelated4
+SnesWorkRam:1EF5:zVarMistery:It is $20 when P1 has 0 speed.\nIt is $00 or $01 otherwise
+SnesWorkRam:1EFB:zVarLastCarHitCounter
+SnesWorkRam:1F00:zVarFinalP1Position:Used to store final P1 position
+SnesWorkRam:1F04:zVarNumberOfPlayers:0: 1 Player\n1: 2 Players
+SnesWorkRam:1F06:zVarTrackNumber:Goes from 0 to 3
+SnesWorkRam:1F08:zVarBackupTrackNumber
+SnesWorkRam:1F12-1F1B:zVarPositionMap:Each index represents the final race\nposition. Only the first 10 (the ones\nwhich gain championship points)\nare represented.\n\nEach value represents a player, following\nthe usual order:\n\nP1 ($00)\nP2 ($01)\nSIMON ($02)\nRITCHIE ($03 etc.) \nASH\nGREGS\nCHRIS\nADE\nT C\nTIM\nSIZ\nMARK\nBERNI\nTONY\nMATT\nROB\nIAN\nJAMES\nSHAUN\nPAUL
+SnesWorkRam:1F26-1F27:zVarP1FinishingTimeInFrames
+SnesWorkRam:1F28-1F29:zVarP2FinishingTimeInFrames
+SnesWorkRam:1F2A-1F4D:zVarFinishingTimeInFramesList:Every 2 bytes represents a player,\nin the usual order:\n\nSIMON\nRITCHIE\nASH\nGREGS\nCHRIS\nADE\nT C\nTIM\nSIZ\nMARK\nBERNI\nTONY\nMATT\nROB\nIAN\nJAMES\nSHAUN\nPAUL
+SnesWorkRam:1F4E-1F61:zVarWorldRankingPointsList:Each index represents the number of\npoints for a player.\nByte 0: P1\nByte 1: P2\nByte 2: Simon\nByte 3: Ritchie\netc
+SnesWorkRam:1F62-1F75:zVarWorldRankingPositionsList:Each byte represents a player index
+SnesWorkRam:1F76-1F77:zVarP1ControlMethodMap:This is defined by changing\nthe input type on the menu.\nSee $0F99BE\n\n- Unchanged by car type.\n- When gear is manual, the gear up and gear down buttons are zeroed.\n\nControl Type Map ($1F76) with manual gear:\n\n   ACCEL BRAKE GEARU GEARD NITRO LEFT  RIGHT\n\nA: 40 00 00 40 10 00 20 00 80 00 00 02 00 01\nB: 00 80 40 00 80 00 00 40 00 10 00 01 00 02\nC: 40 00 00 80 80 00 00 40 00 10 00 02 00 01\nD: 00 80 00 40 10 00 20 00 80 00 00 02 00 01\n\nJoypad data in game:\nR = 00 01\nL = 00 02\nt = 00 10\ny = 00 40\nb = 00 80\nr = 10 00\nl = 20 00\nx = 40 00\na = 80 00\n\nControl methods:\n\n            A B C D\n-------------------\nUP GEAR   | r a a r\nDOWN GEAR | l y y l\nACCEL     | x b x b\nBRAKE     | y x b y\nNITRO     | a t t a\nLEFT      | L R L L\nRIGHT     | R L R R\n\n(Using the joypad data specification code for buttons: byetUDLRaxlr0000 )\n l           r\n U           x\nL R   e t   y a\n D           b
+SnesWorkRam:1F78-1F79:zVarP1BrakeButton:See comment in $1F76
+SnesWorkRam:1F7A-1F7B:zVarP1GearUpButton:See comment in $1F76\n\nIt is #$0000 on Automatic Gear
+SnesWorkRam:1F7C-1F7D:zVarP1GearDownButton:See comment in $1F76
+SnesWorkRam:1F7E-1F7F:zVarP1NitroButton:See comment in $1F76
+SnesWorkRam:1F80-1F81:zVarP1LeftButton:See comment in $1F76
+SnesWorkRam:1F82-1F83:zVarP1RightButton:See comment in $1F76
+SnesWorkRam:1F86-1F8D:zVarP1Name
+SnesWorkRam:1F8F:zVarP1CarType:0: Red\n1: White\n2: Purple\n3: Blue
+SnesWorkRam:1F93:zVarP2ControlMethodMap:See zVarP1ControlMethod
+SnesWorkRam:1FA3-1FAA:zVarP2Name
+SnesWorkRam:1FAC:zVarP2CarType
+SnesWorkRam:1FB0-1FB1:zVarKphOrMph:FFFF for KPH\n0000 for MPH
+SnesWorkRam:1FF4:zVarBackupFrameCounter
+SnesWorkRam:1FF6:zVarDemoRunning:During race:\n\n$FFFF: Yes\n$8000: Yes, but getting out\n$0000: No\n\nDuring title screen:\nIt holds a frame timer, initialized\nto #$04B0 at $0F8F14\nThat is 1200 frames or 20 seconds
+SnesWorkRam:1FF8:zVarAuxFinalP1Position
+SnesWorkRam:1FFA:zVarAuxFinalP2Position
+SnesWorkRam:1FFC:zVarFrameCounter:Increases at $0F8041
+SnesWorkRam:2000:zSubHugeMotherOfSubroutines
+SnesWorkRam:2813:loopStart
+SnesWorkRam:5800-5DBF:zVarTrackInfoPointerTable
+SnesWorkRam:A3C6:zVarCPURelatedMap:It seems to have a counter from\n0000 to 017E, in steps of 2\nBut it only starts at A3D8
+SnesRegister:2100:INIDISP:Screen Display Register
+SnesRegister:2101:OBSEL:Object Size and Character Size Register
+SnesRegister:2102:OAMADDL:OAM Address Registers (Low)
+SnesRegister:2103:OAMADDH:OAM Address Registers (High)
+SnesRegister:2104:OAMDATA:OAM Data Write Register
+SnesRegister:2105:BGMODE:BG Mode and Character Size Register
+SnesRegister:2106:MOSAIC:Mosaic Register
+SnesRegister:2107:BG1SC:BG Tilemap Address Registers (BG1)
+SnesRegister:2108:BG2SC:BG Tilemap Address Registers (BG2)
+SnesRegister:2109:BG3SC:BG Tilemap Address Registers (BG3)
+SnesRegister:210A:BG4SC:BG Tilemap Address Registers (BG4)
+SnesRegister:210B:BG12NBA:BG Character Address Registers (BG1&2)
+SnesRegister:210C:BG34NBA:BG Character Address Registers (BG3&4)
+SnesRegister:210D:BG1HOFS:BG Scroll Registers (BG1)
+SnesRegister:210E:BG1VOFS:BG Scroll Registers (BG1)
+SnesRegister:210F:BG2HOFS:BG Scroll Registers (BG2)
+SnesRegister:2110:BG2VOFS:BG Scroll Registers (BG2)
+SnesRegister:2111:BG3HOFS:BG Scroll Registers (BG3)
+SnesRegister:2112:BG3VOFS:BG Scroll Registers (BG3)
+SnesRegister:2113:BG4HOFS:BG Scroll Registers (BG4)
+SnesRegister:2114:BG4VOFS:BG Scroll Registers (BG4)
+SnesRegister:2115:VMAIN:Video Port Control Register
+SnesRegister:2116:VMADDL:VRAM Address Registers (Low)
+SnesRegister:2117:VMADDH:VRAM Address Registers (High)
+SnesRegister:2118:VMDATAL:VRAM Data Write Registers (Low)
+SnesRegister:2119:VMDATAH:VRAM Data Write Registers (High)
+SnesRegister:211A:M7SEL:Mode 7 Settings Register
+SnesRegister:211B:M7A:Mode 7 Matrix Registers
+SnesRegister:211C:M7B:Mode 7 Matrix Registers
+SnesRegister:211D:M7C:Mode 7 Matrix Registers
+SnesRegister:211E:M7D:Mode 7 Matrix Registers
+SnesRegister:211F:M7X:Mode 7 Matrix Registers
+SnesRegister:2120:M7Y:Mode 7 Matrix Registers
+SnesRegister:2121:CGADD:CGRAM Address Register
+SnesRegister:2122:CGDATA:CGRAM Data Write Register
+SnesRegister:2123:W12SEL:Window Mask Settings Registers
+SnesRegister:2124:W34SEL:Window Mask Settings Registers
+SnesRegister:2125:WOBJSEL:Window Mask Settings Registers
+SnesRegister:2126:WH0:Window Position Registers (WH0)
+SnesRegister:2127:WH1:Window Position Registers (WH1)
+SnesRegister:2128:WH2:Window Position Registers (WH2)
+SnesRegister:2129:WH3:Window Position Registers (WH3)
+SnesRegister:212A:WBGLOG:Window Mask Logic registers (BG)
+SnesRegister:212B:WOBJLOG:Window Mask Logic registers (OBJ)
+SnesRegister:212C:TM:Screen Destination Registers
+SnesRegister:212D:TS:Screen Destination Registers
+SnesRegister:212E:TMW:Window Mask Destination Registers
+SnesRegister:212F:TSW:Window Mask Destination Registers
+SnesRegister:2130:CGWSEL:Color Math Registers
+SnesRegister:2131:CGADSUB:Color Math Registers
+SnesRegister:2132:COLDATA:Color Math Registers
+SnesRegister:2133:SETINI:Screen Mode Select Register
+SnesRegister:2134:MPYL:Multiplication Result Registers
+SnesRegister:2135:MPYM:Multiplication Result Registers
+SnesRegister:2136:MPYH:Multiplication Result Registers
+SnesRegister:2137:SLHV:Software Latch Register
+SnesRegister:2138:OAMDATAREAD:OAM Data Read Register
+SnesRegister:2139:VMDATALREAD:VRAM Data Read Register (Low)
+SnesRegister:213A:VMDATAHREAD:VRAM Data Read Register (High)
+SnesRegister:213B:CGDATAREAD:CGRAM Data Read Register
+SnesRegister:213C:OPHCT:Scanline Location Registers (Horizontal)
+SnesRegister:213D:OPVCT:Scanline Location Registers (Vertical)
+SnesRegister:213E:STAT77:PPU Status Register
+SnesRegister:213F:STAT78:PPU Status Register
+SnesRegister:2140:APUIO0:APU IO Registers
+SnesRegister:2141:APUIO1:APU IO Registers
+SnesRegister:2142:APUIO2:APU IO Registers
+SnesRegister:2143:APUIO3:APU IO Registers
+SnesRegister:2180:WMDATA:WRAM Data Register
+SnesRegister:2181:WMADDL:WRAM Address Registers
+SnesRegister:2182:WMADDM:WRAM Address Registers
+SnesRegister:2183:WMADDH:WRAM Address Registers
+SnesRegister:4016:JOYSER0:Old Style Joypad Registers
+SnesRegister:4017:JOYSER1:Old Style Joypad Registers
+SnesRegister:4200:NMITIMEN:Interrupt Enable Register
+SnesRegister:4201:WRIO:IO Port Write Register
+SnesRegister:4202:WRMPYA:Multiplicand Registers
+SnesRegister:4203:WRMPYB:Multiplicand Registers
+SnesRegister:4204:WRDIVL:Divisor & Dividend Registers
+SnesRegister:4205:WRDIVH:Divisor & Dividend Registers
+SnesRegister:4206:WRDIVB:Divisor & Dividend Registers
+SnesRegister:4207:HTIMEL:IRQ Timer Registers (Horizontal - Low)
+SnesRegister:4208:HTIMEH:IRQ Timer Registers (Horizontal - High)
+SnesRegister:4209:VTIMEL:IRQ Timer Registers (Vertical - Low)
+SnesRegister:420A:VTIMEH:IRQ Timer Registers (Vertical - High)
+SnesRegister:420B:MDMAEN:DMA Enable Register
+SnesRegister:420C:HDMAEN:HDMA Enable Register
+SnesRegister:420D:MEMSEL:ROM Speed Register
+SnesRegister:4210:RDNMI:Interrupt Flag Registers
+SnesRegister:4211:TIMEUP:Interrupt Flag Registers
+SnesRegister:4212:HVBJOY:PPU Status Register
+SnesRegister:4213:RDIO:IO Port Read Register
+SnesRegister:4214:RDDIVL:Multiplication Or Divide Result Registers (Low)
+SnesRegister:4215:RDDIVH:Multiplication Or Divide Result Registers (High)
+SnesRegister:4216:RDMPYL:Multiplication Or Divide Result Registers (Low)
+SnesRegister:4217:RDMPYH:Multiplication Or Divide Result Registers (High)
+SnesRegister:4218:JOY1L:Controller Port Data Registers (Pad 1 - Low)
+SnesRegister:4219:JOY1H:Controller Port Data Registers (Pad 1 - High)
+SnesRegister:421A:JOY2L:Controller Port Data Registers (Pad 2 - Low)
+SnesRegister:421B:JOY2H:Controller Port Data Registers (Pad 2 - High)
+SnesRegister:421C:JOY3L:Controller Port Data Registers (Pad 3 - Low)
+SnesRegister:421D:JOY3H:Controller Port Data Registers (Pad 3 - High)
+SnesRegister:421E:JOY4L:Controller Port Data Registers (Pad 4 - Low)
+SnesRegister:421F:JOY4H:Controller Port Data Registers (Pad 4 - High)
+SnesRegister:4300:DMAP0:(H)DMA Control
+SnesRegister:4301:BBAD0:(H)DMA B-Bus Address
+SnesRegister:4302:A1T0L:DMA A-Bus Address / HDMA Table Address (Low)
+SnesRegister:4303:A1T0H:DMA A-Bus Address / HDMA Table Address (High)
+SnesRegister:4304:A1B0:DMA A-Bus Address / HDMA Table Address (Bank)
+SnesRegister:4305:DAS0L:DMA Size / HDMA Indirect Address (Low)
+SnesRegister:4306:DAS0H:DMA Size / HDMA Indirect Address (High)
+SnesRegister:4307:DAS0B:HDMA Indirect Address (Bank)
+SnesRegister:4308:A2A0L:HDMA Mid Frame Table Address (Low)
+SnesRegister:4309:A2A0H:HDMA Mid Frame Table Address (High)
+SnesRegister:430A:NTLR0:HDMA Line Counter
+SnesRegister:4310:DMAP1:(H)DMA Control
+SnesRegister:4311:BBAD1:(H)DMA B-Bus Address
+SnesRegister:4312:A1T1L:DMA A-Bus Address / HDMA Table Address (Low)
+SnesRegister:4313:A1T1H:DMA A-Bus Address / HDMA Table Address (High)
+SnesRegister:4314:A1B1:DMA A-Bus Address / HDMA Table Address (Bank)
+SnesRegister:4315:DAS1L:DMA Size / HDMA Indirect Address (Low)
+SnesRegister:4316:DAS1H:DMA Size / HDMA Indirect Address (High)
+SnesRegister:4317:DAS1B:HDMA Indirect Address (Bank)
+SnesRegister:4318:A2A1L:HDMA Mid Frame Table Address (Low)
+SnesRegister:4319:A2A1H:HDMA Mid Frame Table Address (High)
+SnesRegister:431A:NTLR1:HDMA Line Counter
+SnesRegister:4320:DMAP2:(H)DMA Control
+SnesRegister:4321:BBAD2:(H)DMA B-Bus Address
+SnesRegister:4322:A1T2L:DMA A-Bus Address / HDMA Table Address (Low)
+SnesRegister:4323:A1T2H:DMA A-Bus Address / HDMA Table Address (High)
+SnesRegister:4324:A1B2:DMA A-Bus Address / HDMA Table Address (Bank)
+SnesRegister:4325:DAS2L:DMA Size / HDMA Indirect Address (Low)
+SnesRegister:4326:DAS2H:DMA Size / HDMA Indirect Address (High)
+SnesRegister:4327:DAS2B:HDMA Indirect Address (Bank)
+SnesRegister:4328:A2A2L:HDMA Mid Frame Table Address (Low)
+SnesRegister:4329:A2A2H:HDMA Mid Frame Table Address (High)
+SnesRegister:432A:NTLR2:HDMA Line Counter
+SnesRegister:4330:DMAP3:(H)DMA Control
+SnesRegister:4331:BBAD3:(H)DMA B-Bus Address
+SnesRegister:4332:A1T3L:DMA A-Bus Address / HDMA Table Address (Low)
+SnesRegister:4333:A1T3H:DMA A-Bus Address / HDMA Table Address (High)
+SnesRegister:4334:A1B3:DMA A-Bus Address / HDMA Table Address (Bank)
+SnesRegister:4335:DAS3L:DMA Size / HDMA Indirect Address (Low)
+SnesRegister:4336:DAS3H:DMA Size / HDMA Indirect Address (High)
+SnesRegister:4337:DAS3B:HDMA Indirect Address (Bank)
+SnesRegister:4338:A2A3L:HDMA Mid Frame Table Address (Low)
+SnesRegister:4339:A2A3H:HDMA Mid Frame Table Address (High)
+SnesRegister:433A:NTLR3:HDMA Line Counter
+SnesRegister:4340:DMAP4:(H)DMA Control
+SnesRegister:4341:BBAD4:(H)DMA B-Bus Address
+SnesRegister:4342:A1T4L:DMA A-Bus Address / HDMA Table Address (Low)
+SnesRegister:4343:A1T4H:DMA A-Bus Address / HDMA Table Address (High)
+SnesRegister:4344:A1B4:DMA A-Bus Address / HDMA Table Address (Bank)
+SnesRegister:4345:DAS4L:DMA Size / HDMA Indirect Address (Low)
+SnesRegister:4346:DAS4H:DMA Size / HDMA Indirect Address (High)
+SnesRegister:4347:DAS4B:HDMA Indirect Address (Bank)
+SnesRegister:4348:A2A4L:HDMA Mid Frame Table Address (Low)
+SnesRegister:4349:A2A4H:HDMA Mid Frame Table Address (High)
+SnesRegister:434A:NTLR4:HDMA Line Counter
+SnesRegister:4350:DMAP5:(H)DMA Control
+SnesRegister:4351:BBAD5:(H)DMA B-Bus Address
+SnesRegister:4352:A1T5L:DMA A-Bus Address / HDMA Table Address (Low)
+SnesRegister:4353:A1T5H:DMA A-Bus Address / HDMA Table Address (High)
+SnesRegister:4354:A1B5:DMA A-Bus Address / HDMA Table Address (Bank)
+SnesRegister:4355:DAS5L:DMA Size / HDMA Indirect Address (Low)
+SnesRegister:4356:DAS5H:DMA Size / HDMA Indirect Address (High)
+SnesRegister:4357:DAS5B:HDMA Indirect Address (Bank)
+SnesRegister:4358:A2A5L:HDMA Mid Frame Table Address (Low)
+SnesRegister:4359:A2A5H:HDMA Mid Frame Table Address (High)
+SnesRegister:435A:NTLR5:HDMA Line Counter
+SnesRegister:4360:DMAP6:(H)DMA Control
+SnesRegister:4361:BBAD6:(H)DMA B-Bus Address
+SnesRegister:4362:A1T6L:DMA A-Bus Address / HDMA Table Address (Low)
+SnesRegister:4363:A1T6H:DMA A-Bus Address / HDMA Table Address (High)
+SnesRegister:4364:A1B6:DMA A-Bus Address / HDMA Table Address (Bank)
+SnesRegister:4365:DAS6L:DMA Size / HDMA Indirect Address (Low)
+SnesRegister:4366:DAS6H:DMA Size / HDMA Indirect Address (High)
+SnesRegister:4367:DAS6B:HDMA Indirect Address (Bank)
+SnesRegister:4368:A2A6L:HDMA Mid Frame Table Address (Low)
+SnesRegister:4369:A2A6H:HDMA Mid Frame Table Address (High)
+SnesRegister:436A:NTLR6:HDMA Line Counter
+SnesRegister:4370:DMAP7:(H)DMA Control
+SnesRegister:4371:BBAD7:(H)DMA B-Bus Address
+SnesRegister:4372:A1T7L:DMA A-Bus Address / HDMA Table Address (Low)
+SnesRegister:4373:A1T7H:DMA A-Bus Address / HDMA Table Address (High)
+SnesRegister:4374:A1B7:DMA A-Bus Address / HDMA Table Address (Bank)
+SnesRegister:4375:DAS7L:DMA Size / HDMA Indirect Address (Low)
+SnesRegister:4376:DAS7H:DMA Size / HDMA Indirect Address (High)
+SnesRegister:4377:DAS7B:HDMA Indirect Address (Bank)
+SnesRegister:4378:A2A7L:HDMA Mid Frame Table Address (Low)
+SnesRegister:4379:A2A7H:HDMA Mid Frame Table Address (High)
+SnesRegister:437A:NTLR7:HDMA Line Counter
+SpcRam:00F0:TEST:Testing functions
+SpcRam:00F1:CONTROL:I/O and Timer Control
+SpcRam:00F2:DSPADDR:DSP Address
+SpcRam:00F3:DSPDATA:DSP Data
+SpcRam:00F4:CPUIO0:CPU I/O 0
+SpcRam:00F5:CPUIO1:CPU I/O 1
+SpcRam:00F6:CPUIO2:CPU I/O 2
+SpcRam:00F7:CPUIO3:CPU I/O 3
+SpcRam:00F8:RAMREG1:Memory Register 1
+SpcRam:00F9:RAMREG2:Memory Register 2
+SpcRam:00FA:T0TARGET:Timer 0 scaling target
+SpcRam:00FB:T1TARGET:Timer 1 scaling target
+SpcRam:00FC:T2TARGET:Timer 2 scaling target
+SpcRam:00FD:T0OUT:Timer 0 output
+SpcRam:00FE:T1OUT:Timer 1 output
+SpcRam:00FF:T2OUT:Timer 2 output

@@ -33,6 +33,7 @@ Files used by Mesen2. Configure it to use these directories as its source for Ch
 If you are feeling lazy, you can just throw the executable in this folder and gitignore everything.
 
 The `mesen2/Debugger/Top Gear (U) [!].json` is the most important file in this Top Gear disassembly. It basically contains all the researched knowledge I got this far.
+The `mesen2/Debugger/Top Gear (U) [!].mlb` should contain the exact same information
 
 ## notes.txt
 
