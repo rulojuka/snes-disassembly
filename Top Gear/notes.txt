@@ -32,24 +32,6 @@ Questions:
 - Create a game with 1 lap of each track
 
 
-5 alertas de fuel low!
-Cheat codes:
-    Hide alerts - P1:
-        DB9F:80 -> 6D2B-A7A4
-    Hide alerts - P2:
-        DD31:80 -> 6D27-0D07
-    Display credits after any new player name
-        F95B9:80 -> 6DB8-0452
-        F95BA:1A -> FCB8-0482
-    Never fail race
-        F8724:00 -> DD64-AF72
-    Never fail country
-    No hud - does not work very well
-        BF2C:EA -> 3C84-A7D7
-        BF2D:EA -> 3C84-A707
-        BF2E:EA -> 3C84-A767
-
-
 Lugares onde a velocidade do p1 é alterada:
 zXXXChangeP1Speed_?
 
@@ -110,10 +92,11 @@ https://gamegenie.codes/snes/top-gear/
     If those side effects are not a problem, then A1F2:0 would be a better solution, writing P1 to all
     finishing positions. 
 - Don't slow down against cars
-    5E4BC:00
-    5E4B7:00
+    5E4BC:00 - Changes BCS (+3) to BCS (+0) effectively turning that opcode into NOP in $05E4BB (PRGROM: $02E4BB)
+    5E4B7:00 - Changes BCS (+8) to BCS (+0) effectively turning that opcode into NOP in $05E4B6 (PRGROM: $02E4B6)
 - Don't slow down against obstacles
     5D6E9:00
+    Changes BNE (+3) to BNE (+0) effectively turning that opcode into NOP in $05D6E8 (PRGROM: $02D6E8)
 - Don't slow down offroad
     5D858:AD
     Changes STA to LDA in $05D858 (PRGROM: $2D858)
@@ -160,3 +143,81 @@ https://gamegenie.codes/snes/top-gear/
     D996:7C
     Changes LDA #$A7FF to LDA #$7CFF in $00D994 (PRGROM: $05994)
     This one should be 7D, not 7C, as 3/4 of A8 is 7E, not 7D.
+
+My cheat codes:
+
+    Hide alerts - P1:
+        DB9F:80 -> 6D2B-A7A4
+    Hide alerts - P2:
+        DD31:80 -> 6D27-0D07
+    Display credits after any new player name
+        F95B9:80 -> 6DB8-0452
+        F95BA:1A -> FCB8-0482
+    Never fail race
+        F8724:00 -> DD64-AF72
+    No hud - does not work very well
+        BF2C:EA -> 3C84-A7D7
+        BF2D:EA -> 3C84-A707
+        BF2E:EA -> 3C84-A767
+    Never fail country
+
+TODO:
+- Apply collision to obstacles into script - check cheat code
+- Apply collision to cars into script - check soneka script
+
+
+IRQ happens at:
+    optional:(middle of last p1 landscape scanline) scanline: (varies between 0 and the next) cycle: around 88
+    (middle of last p1 scanline) scanline: 108 Cycle: 123-154
+    optional:(middle of last p2 landscape scanline) scanline: (varies between the other 2)
+    (end) scanline 224 Cycle 123-154
+
+This is why there is some strange pixels in the last scanline of the landscape:
+Sometimes things are written to the registers before the last scanline ends. This is probably made
+in order to use the most of the black scanlines in the middle
+
+BACKGROUNDS:
+
+The title screen with rotating "Top Gear" runs in mode 7.
+Everything else runs in mode 1.
+
+RACE:
+    BG1: HUD (minus colored points on minimap)
+        - Track minimap
+        - Nitro Counter
+        - Gear display
+        - Tachometer
+        - Speedometer
+        - Chronometer
+        - Fuel meter
+        - Position display
+        - Number countdown (and other alerts)
+        - Baloon messages
+    BG2: Landscape Scenery
+    BG3: Track
+    The rest is done by sprites:
+        - Cars
+        - Obstacles (signs, posts, trees, etc)
+        - Colored points on minimap
+
+MENU:
+    BG1: Text, borders and config images
+    BG2: Detroit background image
+    BG3: Unused
+    Sprites:
+        - Selected option highlight
+        - Country flags
+
+DKEMCO screen:
+    DKEMCO logo: Sprites
+
+"Top" rotating screen:
+    "Top": BG1
+
+"Gear" rotating screen:
+    "Top": Sprites
+    "Gear": BG1
+
+Title screen:
+    "Top" and text: Sprites
+    "Gear": BG1
