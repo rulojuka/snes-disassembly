@@ -221,3 +221,8 @@ DKEMCO screen:
 Title screen:
     "Top" and text: Sprites
     "Gear": BG1
+
+
+PRGROM Memory Map:
+
+20000 - 23D7F: Sprite Data for cars

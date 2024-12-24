@@ -8,7 +8,9 @@
         "{zAuxMovementYRelated3}",
         "[zVarP1Position]",
         "[zVarP1Fuel]",
-        "[zVarP1Gear]"
+        "[zVarP1Gear]",
+        "[zVarP1CarType]",
+        "[zVarP2CarType]"
       ],
       "Labels": [
         {
@@ -4654,8 +4656,8 @@
         {
           "Address": 17842,
           "MemoryType": "SnesPrgRom",
-          "Label": "zSubInitializeCarSprites",
-          "Comment": "When disabled, car sprites\r\nare not drawn.\r\n\r\nThis is probably where the car colors\r\nare decided",
+          "Label": "zSubInitializeCarSpritesToOAM1",
+          "Comment": "When disabled, car sprites\r\nare not drawn.\r\n\r\nThis is probably where the car colors\r\nare decided\r\n\r\n\r\nThis subroutine selects the correct\r\ncharacters based on each player car\r\nand schedules a DMA from PGROM to OAM1\r\n(VRAM addresses 4000 to 4FFF for car sprites)\r\ncontaining the correct characters",
           "Flags": "None",
           "Length": 1
         },
@@ -6226,20 +6228,212 @@
           "Comment": "",
           "Flags": "None",
           "Length": 1
+        },
+        {
+          "Address": 443962,
+          "MemoryType": "SnesPrgRom",
+          "Label": "zDataIndexedByCarType",
+          "Comment": "",
+          "Flags": "None",
+          "Length": 1
+        },
+        {
+          "Address": 17940,
+          "MemoryType": "SnesPrgRom",
+          "Label": "",
+          "Comment": "Branch if car is red?",
+          "Flags": "None",
+          "Length": 1
+        },
+        {
+          "Address": 17949,
+          "MemoryType": "SnesPrgRom",
+          "Label": "",
+          "Comment": "If car is red:",
+          "Flags": "None",
+          "Length": 1
+        },
+        {
+          "Address": 17958,
+          "MemoryType": "SnesPrgRom",
+          "Label": "",
+          "Comment": "If cars are equal",
+          "Flags": "None",
+          "Length": 1
+        },
+        {
+          "Address": 18055,
+          "MemoryType": "SnesPrgRom",
+          "Label": "",
+          "Comment": "P1Car P2Car  Y\r\n0     0      FFFF\r\n0     1      \r\n0     2      9E60\r\n0     3      AE20\r\n1     0      \r\n1     1\r\n1     2      9EC0",
+          "Flags": "None",
+          "Length": 1
+        },
+        {
+          "Address": 17854,
+          "MemoryType": "SnesPrgRom",
+          "Label": "",
+          "Comment": "Enable 2 bytes arithmetic",
+          "Flags": "None",
+          "Length": 1
+        },
+        {
+          "Address": 17927,
+          "MemoryType": "SnesPrgRom",
+          "Label": "",
+          "Comment": "Enable DMA Channel 0\r\nThis will copy the more tire smoke,\r\nnitro fire and minimap circle\r\ncharacters to OAM1",
+          "Flags": "None",
+          "Length": 1
+        },
+        {
+          "Address": 17930,
+          "MemoryType": "SnesPrgRom",
+          "Label": "",
+          "Comment": "make A, X, Y 16-bits",
+          "Flags": "None",
+          "Length": 1
+        },
+        {
+          "Address": 18014,
+          "MemoryType": "SnesPrgRom",
+          "Label": "",
+          "Comment": "Current X-\u003EA value\r\nP1Car Value\r\n0     8000\r\n1\r\n2\r\n3",
+          "Flags": "None",
+          "Length": 1
+        },
+        {
+          "Address": 18075,
+          "MemoryType": "SnesPrgRom",
+          "Label": "",
+          "Comment": "Enable DMA Channel 0\r\n\r\nThis will copy the second car characters\r\ninto OAM1\r\nIf P2 is the same car as P1, there will\r\nbe a different car added to be used\r\nby some CPU cars",
+          "Flags": "None",
+          "Length": 1
+        },
+        {
+          "Address": 17998,
+          "MemoryType": "SnesPrgRom",
+          "Label": "",
+          "Comment": "Disable DMA",
+          "Flags": "None",
+          "Length": 1
+        },
+        {
+          "Address": 18034,
+          "MemoryType": "SnesPrgRom",
+          "Label": "",
+          "Comment": "Enable DMA Channel 0\r\n\r\nThis will copy P1 car into OAM1",
+          "Flags": "None",
+          "Length": 1
+        },
+        {
+          "Address": 18039,
+          "MemoryType": "SnesPrgRom",
+          "Label": "",
+          "Comment": "Disable DMA",
+          "Flags": "None",
+          "Length": 1
+        },
+        {
+          "Address": 17846,
+          "MemoryType": "SnesPrgRom",
+          "Label": "",
+          "Comment": "Disable DMA",
+          "Flags": "None",
+          "Length": 1
+        },
+        {
+          "Address": 17889,
+          "MemoryType": "SnesPrgRom",
+          "Label": "",
+          "Comment": "Disable DMA",
+          "Flags": "None",
+          "Length": 1
+        },
+        {
+          "Address": 17884,
+          "MemoryType": "SnesPrgRom",
+          "Label": "",
+          "Comment": "Enable DMA Channel 0\r\nThis will copy the tire smoke and the\r\nminimap color circle characters to OAM1",
+          "Flags": "None",
+          "Length": 1
+        },
+        {
+          "Address": 17925,
+          "MemoryType": "SnesPrgRom",
+          "Label": "",
+          "Comment": "All initializations are literal up to here.",
+          "Flags": "None",
+          "Length": 1
+        },
+        {
+          "Address": 18003,
+          "MemoryType": "SnesPrgRom",
+          "Label": "",
+          "Comment": "A-Bus bank (#$04)",
+          "Flags": "None",
+          "Length": 1
+        },
+        {
+          "Address": 18015,
+          "MemoryType": "SnesPrgRom",
+          "Label": "",
+          "Comment": "A-Bus Address (depends on car)\r\nCar Address\r\n0   $8000\r\n1   $8F60\r\n2   $9EC0\r\n3   $AE20\r\nBank is always #$04 so the complete\r\naddress for the CPU Memory would be,\r\nfor the red car: $048000\r\nWhich is $020000 on the PRGROM",
+          "Flags": "None",
+          "Length": 1
+        },
+        {
+          "Address": 18021,
+          "MemoryType": "SnesPrgRom",
+          "Label": "",
+          "Comment": "Size: Always 3936 bytes",
+          "Flags": "None",
+          "Length": 1
+        },
+        {
+          "Address": 131072,
+          "MemoryType": "SnesPrgRom",
+          "Label": "zDataSpriteCar0",
+          "Comment": "",
+          "Flags": "None",
+          "Length": 3936
+        },
+        {
+          "Address": 135008,
+          "MemoryType": "SnesPrgRom",
+          "Label": "zDataSpriteCar1",
+          "Comment": "",
+          "Flags": "None",
+          "Length": 3936
+        },
+        {
+          "Address": 138944,
+          "MemoryType": "SnesPrgRom",
+          "Label": "zDataSpriteCar2",
+          "Comment": "",
+          "Flags": "None",
+          "Length": 3936
+        },
+        {
+          "Address": 142880,
+          "MemoryType": "SnesPrgRom",
+          "Label": "zDataSpriteCar3",
+          "Comment": "",
+          "Flags": "None",
+          "Length": 3936
         }
       ],
       "Breakpoints": [
         {
-          "BreakOnRead": false,
-          "BreakOnWrite": false,
+          "BreakOnRead": true,
+          "BreakOnWrite": true,
           "BreakOnExec": true,
           "Forbid": false,
-          "Enabled": true,
+          "Enabled": false,
           "MarkEvent": false,
           "IgnoreDummyOperations": true,
-          "MemoryType": "SnesPrgRom",
-          "StartAddress": 495691,
-          "EndAddress": 495691,
+          "MemoryType": "SnesWorkRam",
+          "StartAddress": 8079,
+          "EndAddress": 8079,
           "CpuType": "Snes",
           "AnyAddress": false,
           "IsAssert": false,
@@ -6254,8 +6448,8 @@
           "MarkEvent": false,
           "IgnoreDummyOperations": true,
           "MemoryType": "SnesPrgRom",
-          "StartAddress": 504679,
-          "EndAddress": 504679,
+          "StartAddress": 18034,
+          "EndAddress": 18034,
           "CpuType": "Snes",
           "AnyAddress": false,
           "IsAssert": false,
@@ -6270,8 +6464,24 @@
           "MarkEvent": false,
           "IgnoreDummyOperations": true,
           "MemoryType": "SnesPrgRom",
-          "StartAddress": 25101,
-          "EndAddress": 25101,
+          "StartAddress": 18075,
+          "EndAddress": 18075,
+          "CpuType": "Snes",
+          "AnyAddress": false,
+          "IsAssert": false,
+          "Condition": ""
+        },
+        {
+          "BreakOnRead": false,
+          "BreakOnWrite": false,
+          "BreakOnExec": true,
+          "Forbid": false,
+          "Enabled": true,
+          "MarkEvent": false,
+          "IgnoreDummyOperations": true,
+          "MemoryType": "SnesPrgRom",
+          "StartAddress": 18015,
+          "EndAddress": 18015,
           "CpuType": "Snes",
           "AnyAddress": false,
           "IsAssert": false,
