@@ -225,4 +225,6 @@ Title screen:
 
 PRGROM Memory Map:
 
-20000 - 23D7F: Sprite Data for cars
+6AC51 - 6AE4E: Rotation data (sines and cosines) for "Top" and "Gear" rotation
+158C9 - 17548: Sprite data for Speech Baloons (4bpp)
+20000 - 23D7F: Sprite Data for cars (4bpp)

@@ -1592,10 +1592,10 @@
         {
           "Address": 437329,
           "MemoryType": "SnesPrgRom",
-          "Label": "zRotationTable",
+          "Label": "zDataRotationTable",
           "Comment": "",
           "Flags": "None",
-          "Length": 1
+          "Length": 510
         },
         {
           "Address": 495133,
@@ -2929,7 +2929,7 @@
           "Address": 7925,
           "MemoryType": "SnesWorkRam",
           "Label": "zVarMistery",
-          "Comment": "It is $20 when P1 has 0 speed.\r\nIt is $00 or $01 otherwise",
+          "Comment": "It is $20 when P1 has 0 speed or fuel.\r\nIt is $00 or $01 otherwise",
           "Flags": "None",
           "Length": 1
         },
@@ -3449,7 +3449,7 @@
           "Address": 280,
           "MemoryType": "SnesWorkRam",
           "Label": "zVarAlertMessageToShow",
-          "Comment": "",
+          "Comment": "Check PRG $005D9C\r\nto see the list of alerts",
           "Flags": "None",
           "Length": 1
         },
@@ -4289,7 +4289,7 @@
           "Address": 7860,
           "MemoryType": "SnesWorkRam",
           "Label": "zVarP1AndP2HaveFinishedRace",
-          "Comment": "Bitmask for P1 and P2\r\n\r\nBit 1: P1 (unset at TRB at 05E7D2)\r\nBit 2: P2 (unset at TRB at 05E878)\r\n\r\nIf both are unset, finishes the race at\r\n$008788\r\n\r\nOther interest points in ROM:\r\nInitialized at $0082FA (with #$03)\r\n",
+          "Comment": "Bitmask for P1 and P2\r\n\r\nBit 1: P1 (unset at TRB at 05E7D2)\r\nBit 2: P2 (unset at TRB at 05E878)\r\n\r\nIf both are unset, finishes the race at\r\nCPU:$008788\r\n\r\nOther interest points in ROM:\r\nInitialized at $0082FA (with #$03, \r\nwhich is 0b11)\r\n\r\nUpdated at:\r\n CPU: $05D66C - out of fuel (RESET)\r\n CPU: $05D78D - fueling (SET)",
           "Flags": "None",
           "Length": 1
         },
@@ -4497,7 +4497,7 @@
           "Address": 291,
           "MemoryType": "SnesPrgRom",
           "Label": "",
-          "Comment": "This is the end of all initial setup\r\nIt takes 171451 cycles to get here\r\nfrom boot.\r\n\r\nIt never gets here again",
+          "Comment": "This is the end of all initial setup\r\nIt takes 4003493 cycles to get here\r\nfrom boot.\r\n\r\nIt never gets here again\r\n\r\nI previously got the number: 171451",
           "Flags": "None",
           "Length": 1
         },
@@ -5241,7 +5241,7 @@
           "Address": 491558,
           "MemoryType": "SnesPrgRom",
           "Label": "zDMAEnableSection",
-          "Comment": "",
+          "Comment": "Enable DMA Channel 1",
           "Flags": "None",
           "Length": 1
         },
@@ -6420,20 +6420,52 @@
           "Comment": "",
           "Flags": "None",
           "Length": 3936
+        },
+        {
+          "Address": 22702,
+          "MemoryType": "SnesPrgRom",
+          "Label": "",
+          "Comment": "DMA Channel 7 Enabled",
+          "Flags": "None",
+          "Length": 1
+        },
+        {
+          "Address": 88265,
+          "MemoryType": "SnesPrgRom",
+          "Label": "zDataSpeechBaloons",
+          "Comment": "",
+          "Flags": "None",
+          "Length": 7296
+        },
+        {
+          "Address": 501388,
+          "MemoryType": "SnesPrgRom",
+          "Label": "",
+          "Comment": "Enable DMA Channels 0,1,2",
+          "Flags": "None",
+          "Length": 1
+        },
+        {
+          "Address": 186228,
+          "MemoryType": "SnesPrgRom",
+          "Label": "zPitStopRoutine",
+          "Comment": "",
+          "Flags": "None",
+          "Length": 1
         }
       ],
       "Breakpoints": [
         {
           "BreakOnRead": true,
           "BreakOnWrite": true,
-          "BreakOnExec": true,
+          "BreakOnExec": false,
           "Forbid": false,
-          "Enabled": false,
+          "Enabled": true,
           "MarkEvent": false,
           "IgnoreDummyOperations": true,
-          "MemoryType": "SnesWorkRam",
-          "StartAddress": 8079,
-          "EndAddress": 8079,
+          "MemoryType": "SnesPrgRom",
+          "StartAddress": 437329,
+          "EndAddress": 437329,
           "CpuType": "Snes",
           "AnyAddress": false,
           "IsAssert": false,
@@ -6448,40 +6480,8 @@
           "MarkEvent": false,
           "IgnoreDummyOperations": true,
           "MemoryType": "SnesPrgRom",
-          "StartAddress": 18034,
-          "EndAddress": 18034,
-          "CpuType": "Snes",
-          "AnyAddress": false,
-          "IsAssert": false,
-          "Condition": ""
-        },
-        {
-          "BreakOnRead": false,
-          "BreakOnWrite": false,
-          "BreakOnExec": true,
-          "Forbid": false,
-          "Enabled": true,
-          "MarkEvent": false,
-          "IgnoreDummyOperations": true,
-          "MemoryType": "SnesPrgRom",
-          "StartAddress": 18075,
-          "EndAddress": 18075,
-          "CpuType": "Snes",
-          "AnyAddress": false,
-          "IsAssert": false,
-          "Condition": ""
-        },
-        {
-          "BreakOnRead": false,
-          "BreakOnWrite": false,
-          "BreakOnExec": true,
-          "Forbid": false,
-          "Enabled": true,
-          "MarkEvent": false,
-          "IgnoreDummyOperations": true,
-          "MemoryType": "SnesPrgRom",
-          "StartAddress": 18015,
-          "EndAddress": 18015,
+          "StartAddress": 500437,
+          "EndAddress": 500437,
           "CpuType": "Snes",
           "AnyAddress": false,
           "IsAssert": false,
